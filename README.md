@@ -93,9 +93,11 @@ extras/winxpremix-follow-scheme follows light/dark mode
 extras/winxpremix-lockscreen@winxpremix
                                 extension that keeps the Shell theme on the lock screen
 wallpapers/                     "Hill" day/night SVGs
+wallpapers/LICENSE              CC BY 4.0 text (applies to the wallpapers only)
 themes/                         build output (./build.sh), committed on purpose
 VERSION                         current version (written to index.theme by the build)
 CHANGELOG.md                    changelog
+LICENSE                         GPL-3.0 text (applies to everything else)
 ```
 
 ### Development
@@ -128,3 +130,25 @@ When releasing a version, update `VERSION`, the version line at the top of this 
   with the `winxpremix-lockscreen@winxpremix` extension, which `install.sh` installs. The blurred
   wallpaper sits on top of the screen background, so only the central panel gets the Luna blue,
   and the whole screen cannot be tinted.
+
+## License
+
+| What | License |
+|---|---|
+| Code: `src/`, `extras/`, `themes/` and the scripts | [GPL-3.0-or-later](LICENSE) |
+| "Hill" wallpapers: `wallpapers/*.svg` | [CC BY 4.0](wallpapers/LICENSE), © 2026 pdrmottadev |
+
+You can share and adapt the wallpapers, including commercially, as long as you give credit. For
+example:
+
+> "Hill" wallpaper by pdrmottadev, from [WinXPRemix](https://github.com/pdrmottadev/WinXPRemix),
+> licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+
+If you changed the wallpaper, say so in the credit (for example, "adapted from…").
+
+The screenshots show third-party apps, icons and logos, which remain under their own licenses
+and trademarks.
+
+Windows and Windows XP are trademarks of Microsoft Corporation. WinXPRemix is a fan-made theme
+and is not affiliated with or endorsed by Microsoft. It contains no Microsoft code or artwork:
+the colors and layout are a reinterpretation, and the wallpapers are original.

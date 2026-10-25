@@ -5,6 +5,13 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## Unreleased
 
+### Added
+
+- Licensing: the code is under GPL-3.0-or-later (`LICENSE`), and the "Hill" wallpapers are under
+  CC BY 4.0 (`wallpapers/LICENSE`), with SPDX tags in the SVG files. The README explains which
+  license covers what, how to credit the wallpapers, and that the project is not affiliated with
+  Microsoft.
+
 ### Changed
 
 - The project is now in English: README, changelog, script messages, code comments and
