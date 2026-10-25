@@ -1,8 +1,8 @@
-// WinXPRemix — variáveis --xp-* do GTK 4, geradas a partir de _palette.scss
+// WinXPRemix — GTK 4 --xp-* variables, generated from _palette.scss
 //
-// O build.sh compila este arquivo e o coloca antes de gtk.css. A paleta é
-// importada duas vezes: o libsass reavalia o @import, então cada passada
-// recalcula as cores com o $variant da vez.
+// build.sh compiles this file and puts it before gtk.css. The palette is
+// imported twice: libsass re-evaluates @import, so each pass recomputes the
+// colors with the current $variant.
 
 @mixin xp-vars {
   --xp-title-top: #{$title-top};

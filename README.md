@@ -1,130 +1,130 @@
 # WinXPRemix
 
-O visual **Luna** do Windows XP reimaginado para o **GNOME 50+**: a barra de tarefas azul,
-o botão Iniciar verde, barras de título em gradiente e os balões amarelos de notificação,
-com cantos arredondados, superfícies limpas e um modo escuro de verdade.
+The Windows XP **Luna** look reimagined for **GNOME 50+**: the blue taskbar, the green Start
+button, gradient title bars and the yellow notification balloons, with rounded corners, clean
+surfaces and a proper dark mode.
 
-**Versão 1.1.1** · [histórico de mudanças](CHANGELOG.md)
+**Version 1.1.1** · [changelog](CHANGELOG.md)
 
-![Apps libadwaita](screenshots/libadwaita-claro.png)
+![libadwaita apps](screenshots/libadwaita-light.png)
 
-| Configurações rápidas | Calendário e notificações |
+| Quick settings | Calendar and notifications |
 |---|---|
-| ![](screenshots/shell-configuracoes-rapidas.png) | ![](screenshots/shell-calendario.png) |
+| ![](screenshots/shell-quick-settings.png) | ![](screenshots/shell-calendar.png) |
 
-| Modo escuro | GTK 3 |
+| Dark mode | GTK 3 |
 |---|---|
-| ![](screenshots/escuro-nautilus.png) | ![](screenshots/gtk3-claro.png) |
+| ![](screenshots/dark-files.png) | ![](screenshots/gtk3-light.png) |
 
-| Tela de bloqueio | Visão geral |
+| Lock screen | Overview |
 |---|---|
-| ![](screenshots/tela-bloqueio.png) | ![](screenshots/visao-geral.png) |
+| ![](screenshots/lock-screen.png) | ![](screenshots/overview.png) |
 
-| Diálogo de alerta | Grupos de alternância |
+| Alert dialog | Toggle groups |
 |---|---|
-| ![](screenshots/libadwaita-dialogo.png) | ![](screenshots/libadwaita-controles.png) |
+| ![](screenshots/libadwaita-dialog.png) | ![](screenshots/libadwaita-toggle-groups.png) |
 
-## O que muda
+## What changes
 
-| Parte | Visual |
+| Part | Look |
 |---|---|
-| **Barra superior** | Barra de tarefas Luna em gradiente azul. "Atividades" vira uma pílula verde no estilo do botão Iniciar, e o lado direito vira a área de notificação em azul-claro |
-| **Menus** | Borda azul e item destacado em azul `#316AC5`, como nos menus do XP |
-| **Configurações rápidas** | Painel claro com botões no estilo XP. O hover tem contorno laranja e os botões ativos ficam azuis |
-| **Notificações e dicas** | Balões amarelos `#FFFFE1` |
-| **Alt+Tab, OSD, dash** | Azul Luna. O dash vira uma barra de tarefas flutuante |
-| **Janelas (GTK4/libadwaita e GTK3)** | Barra de título em gradiente azul com título em negrito. Botões minimizar/maximizar quadrados, e o fechar em vermelho |
-| **Controles** | Check verde em caixa branca, chaves verdes, barra de progresso em blocos verdes, aba ativa com destaque laranja, grupos de alternância com o item ativo em azul, barra lateral azul-clara do Explorer |
-| **Diálogos** | Alertas com faixa azul no topo e moldura, como as janelas do XP (no Shell e no libadwaita) |
-| **Tela de bloqueio** | Relógio e campo de senha num painel azul "Bem-vindo", avatar com moldura branca e notificações em balões amarelos |
-| **Papel de parede** | "Colina": arte original inspirada na paisagem clássica, com versão diurna e noturna (troca sozinha com o modo escuro) |
+| **Top bar** | Luna taskbar in a blue gradient. "Activities" becomes a green pill in the style of the Start button, and the right side becomes a light-blue notification area |
+| **Menus** | Blue border and items highlighted in `#316AC5` blue, like the XP menus |
+| **Quick settings** | Light panel with XP-style buttons. Hover gets an orange outline and active buttons turn blue |
+| **Notifications and tooltips** | Yellow `#FFFFE1` balloons |
+| **Alt+Tab, OSD, dash** | Luna blue. The dash becomes a floating taskbar |
+| **Windows (GTK4/libadwaita and GTK3)** | Blue gradient title bar with a bold title. Square minimize/maximize buttons and a red close button |
+| **Controls** | Green check in a white box, green switches, green block progress bar, orange highlight on the active tab, toggle groups with the active item in blue, light-blue Explorer sidebar |
+| **Dialogs** | Alerts with a blue strip on top and a frame, like XP windows (in the Shell and in libadwaita) |
+| **Lock screen** | Clock and password field on a blue "Welcome" panel, avatar with a white frame and notifications as yellow balloons |
+| **Wallpaper** | "Hill": original artwork inspired by the classic landscape, with day and night versions (switches automatically with dark mode) |
 
-## Requisitos
+## Requirements
 
-- GNOME Shell 50 ou mais novo (testado no 50.6 / libadwaita 1.9 / GTK 4.22, Fedora 44)
-- Extensão **User Themes**, para o tema do Shell (`sudo dnf install gnome-shell-extension-user-theme`)
-- `sassc`, para compilar a partir do código-fonte (opcional, porque `themes/` já vem compilado)
+- GNOME Shell 50 or newer (tested on 50.6 / libadwaita 1.9 / GTK 4.22, Fedora 44)
+- The **User Themes** extension, for the Shell theme (`sudo dnf install gnome-shell-extension-user-theme`)
+- `sassc`, to build from source (optional, since `themes/` ships prebuilt)
 
-## Instalação
+## Installation
 
 ```bash
 ./install.sh
 ```
 
-Tudo fica na sua conta de usuário, sem `sudo`:
+Everything goes into your user account, no `sudo`:
 
-| Destino | Conteúdo |
+| Destination | Contents |
 |---|---|
-| `~/.themes/WinXPRemix` e `~/.themes/WinXPRemix-Dark` | Shell + GTK3 + GTK4 |
-| `~/.config/gtk-4.0/gtk.css` | Override do libadwaita. Se já existia um arquivo, ele é guardado em `~/.local/share/winxpremix/` |
-| `~/.local/share/backgrounds/winxpremix/` | Papéis de parede, que também aparecem em Configurações → Aparência |
-| `~/.local/share/gnome-shell/extensions/winxpremix-lockscreen@winxpremix` | Extensão auxiliar que mantém o tema na tela de bloqueio (a User Themes é desativada ao bloquear) |
-| `~/.local/bin/winxpremix-follow-scheme` + autostart | Troca as variantes clara/escura do Shell e do GTK3 junto com o modo escuro do GNOME |
-| Override global do Flatpak (`--user`) | Acesso de leitura a `~/.config/gtk-4.0`, para apps Flatpak também pegarem o tema |
+| `~/.themes/WinXPRemix` and `~/.themes/WinXPRemix-Dark` | Shell + GTK3 + GTK4 |
+| `~/.config/gtk-4.0/gtk.css` | libadwaita override. If a file already existed, it is saved to `~/.local/share/winxpremix/` |
+| `~/.local/share/backgrounds/winxpremix/` | Wallpapers, which also show up in Settings → Appearance |
+| `~/.local/share/gnome-shell/extensions/winxpremix-lockscreen@winxpremix` | Helper extension that keeps the theme on the lock screen (User Themes is disabled when the screen locks) |
+| `~/.local/bin/winxpremix-follow-scheme` + autostart | Switches the light/dark variants of the Shell and GTK3 themes along with GNOME's dark mode |
+| Global Flatpak override (`--user`) | Read access to `~/.config/gtk-4.0`, so Flatpak apps pick up the theme too |
 
-O script também ativa a extensão User Themes e a extensão da tela de bloqueio, seleciona o tema e
-ajusta os botões da janela para `minimizar, maximizar, fechar`. **Apps abertos precisam ser
-reabertos.** Na primeira instalação, saia e entre de novo na sessão: o Shell só carrega extensões
-novas no login, e até lá a tela de bloqueio fica com o visual padrão.
+The script also enables the User Themes extension and the lock screen extension, selects the
+theme and sets the window buttons to `minimize, maximize, close`. **Open apps need to be
+reopened.** After the first install, log out and back in: the Shell only loads new extensions at
+login, and until then the lock screen keeps the default look.
 
-Opções: `--no-apply`, `--no-gtk4`, `--no-wallpaper`, `--no-follow`, `--no-flatpak` (veja `./install.sh --help`).
+Options: `--no-apply`, `--no-gtk4`, `--no-wallpaper`, `--no-follow`, `--no-flatpak` (see `./install.sh --help`).
 
-### Desinstalar
+### Uninstall
 
 ```bash
 ./uninstall.sh
 ```
 
-Remove os arquivos e restaura o tema, os botões, o papel de parede e o `gtk.css` que você
-tinha antes. A liberação do Flatpak só é desfeita se foi o `install.sh` que a criou, e os seus
-outros overrides continuam como estão.
+Removes the files and restores the theme, window buttons, wallpaper and `gtk.css` you had
+before. The Flatpak access is only removed if `install.sh` granted it, and your other overrides
+stay as they are.
 
-## Estrutura
+## Layout
 
 ```
 src/
-  _palette.scss                 cores Luna (claro/escuro): fonte única para Shell, GTK3 e GTK4
-  gnome-shell/_shell.scss       tema do Shell (sobre a base gnome-shell-light/dark.css)
-  gtk-3.0/_gtk3.scss            GTK3 (sobre o Adwaita embutido)
-  gtk-4.0/palette.scss          gera as variáveis --xp-* do GTK4 a partir da paleta
-  gtk-4.0/gtk.css               regras do GTK4/libadwaita (sem cores próprias; o build junta
-                                as variáveis geradas antes delas)
-extras/winxpremix-follow-scheme acompanha o modo claro/escuro
+  _palette.scss                 Luna colors (light/dark): single source for Shell, GTK3 and GTK4
+  gnome-shell/_shell.scss       Shell theme (on top of the gnome-shell-light/dark.css base)
+  gtk-3.0/_gtk3.scss            GTK3 (on top of the built-in Adwaita)
+  gtk-4.0/palette.scss          generates the GTK4 --xp-* variables from the palette
+  gtk-4.0/gtk.css               GTK4/libadwaita rules (no colors of their own; the build puts
+                                the generated variables before them)
+extras/winxpremix-follow-scheme follows light/dark mode
 extras/winxpremix-lockscreen@winxpremix
-                                extensão que mantém o tema do Shell na tela de bloqueio
-wallpapers/                     SVGs "Colina" dia/noite
-themes/                         saída compilada (./build.sh), versionada de propósito
-VERSION                         versão atual (vai para o index.theme no build)
-CHANGELOG.md                    histórico de mudanças
+                                extension that keeps the Shell theme on the lock screen
+wallpapers/                     "Hill" day/night SVGs
+themes/                         build output (./build.sh), committed on purpose
+VERSION                         current version (written to index.theme by the build)
+CHANGELOG.md                    changelog
 ```
 
-### Desenvolvimento
+### Development
 
-Depois de editar algo em `src/`, rode `./build.sh` e depois `./install.sh`.
+After editing anything in `src/`, run `./build.sh` and then `./install.sh`.
 
-- **Apps GTK3/GTK4:** basta fechar e abrir de novo.
-- **Shell:** no Wayland o `Alt+F2` → `r` não existe. Para recarregar o tema, desative e reative a User Themes:
+- **GTK3/GTK4 apps:** just close and reopen them.
+- **Shell:** on Wayland there is no `Alt+F2` → `r`. To reload the theme, disable and re-enable User Themes:
 
   ```bash
   gnome-extensions disable user-theme@gnome-shell-extensions.gcampax.github.com
   gnome-extensions enable user-theme@gnome-shell-extensions.gcampax.github.com
   ```
 
-  Também funciona trocar o tema e voltar (`gsettings set org.gnome.shell.extensions.user-theme name ''`
-  e depois `'WinXPRemix'` ou `'WinXPRemix-Dark'`). Para ver a tela de bloqueio, use `Super+L`.
+  Switching the theme away and back also works (`gsettings set org.gnome.shell.extensions.user-theme name ''`,
+  then `'WinXPRemix'` or `'WinXPRemix-Dark'`). To see the lock screen, press `Super+L`.
 
-Ao lançar uma versão, atualize o `VERSION`, a linha de versão no topo deste README e o `CHANGELOG.md`.
+When releasing a version, update `VERSION`, the version line at the top of this README and `CHANGELOG.md`.
 
-## Limitações conhecidas
+## Known limitations
 
-- **libadwaita não tem suporte oficial a temas.** O visual dos apps GTK4 vem do `~/.config/gtk-4.0/gtk.css`.
-  Funciona bem, mas uma atualização grande do libadwaita pode exigir ajustes.
-- **Todas as headerbars ficam azuis**, inclusive as de players de vídeo que ficam sobre o conteúdo.
-- **Apps Flatpak** só leem o `gtk.css` se tiverem acesso a ele. O `install.sh` já libera isso
-  (`flatpak override --user --filesystem=xdg-config/gtk-4.0:ro`); use `--no-flatpak` para não liberar.
-- **Ícones e cursores** não fazem parte do tema. Combinam bem com ele os sets no estilo XP disponíveis no GNOME-Look.
-- **Login (GDM)** continua com o visual padrão, porque usa o tema do sistema e exige root.
-- **Tela de bloqueio:** a User Themes é desativada ao bloquear, então o tema só aparece ali com a
-  extensão `winxpremix-lockscreen@winxpremix`, que o `install.sh` instala. O papel de parede
-  desfocado fica por cima do fundo da tela, então só o painel central recebe o azul Luna, e a
-  tela inteira não pode ser tingida.
+- **libadwaita has no official theming support.** The look of GTK4 apps comes from `~/.config/gtk-4.0/gtk.css`.
+  It works well, but a major libadwaita update may need adjustments.
+- **Every headerbar turns blue**, including the ones video players overlay on top of the content.
+- **Flatpak apps** only read `gtk.css` if they have access to it. `install.sh` grants that already
+  (`flatpak override --user --filesystem=xdg-config/gtk-4.0:ro`); use `--no-flatpak` to skip it.
+- **Icons and cursors** are not part of the theme. The XP-style sets available on GNOME-Look go well with it.
+- **Login (GDM)** keeps the default look, because it uses the system theme and needs root.
+- **Lock screen:** User Themes is disabled when the screen locks, so the theme only shows there
+  with the `winxpremix-lockscreen@winxpremix` extension, which `install.sh` installs. The blurred
+  wallpaper sits on top of the screen background, so only the central panel gets the Luna blue,
+  and the whole screen cannot be tinted.

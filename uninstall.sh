@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Remove o WinXPRemix e restaura as configurações salvas pelo install.sh.
+# Removes WinXPRemix and restores the settings saved by install.sh.
 set -euo pipefail
 
 DATA_DIR="${XDG_DATA_HOME:-$HOME/.local/share}"
@@ -13,11 +13,11 @@ MARKER='WinXPRemix — GTK 4 / libadwaita'
 
 step() { printf '\033[1;34m==>\033[0m %s\n' "$*"; }
 
-step "Parando alternância automática"
+step "Stopping automatic switching"
 pkill -f "$FOLLOW_BIN" 2>/dev/null || true
 rm -f "$FOLLOW_BIN" "$CONFIG_DIR/autostart/winxpremix-follow-scheme.desktop"
 
-step "Removendo a extensão da tela de bloqueio"
+step "Removing the lock screen extension"
 enabled=$(gsettings get org.gnome.shell enabled-extensions)
 if [[ $enabled == *"'$LOCK_UUID'"* ]]; then
   enabled=${enabled//", '$LOCK_UUID'"/}
@@ -27,7 +27,7 @@ if [[ $enabled == *"'$LOCK_UUID'"* ]]; then
 fi
 rm -rf "${DATA_DIR:?}/gnome-shell/extensions/$LOCK_UUID"
 
-step "Restaurando configurações"
+step "Restoring settings"
 if [[ -f "$STATE_DIR/previous-settings" ]]; then
   while IFS='=' read -r key value; do
     case "$key" in
@@ -45,7 +45,7 @@ else
 fi
 
 if [[ -f "$GTK4_CSS" ]] && grep -q "$MARKER" "$GTK4_CSS"; then
-  step "Removendo override do libadwaita"
+  step "Removing the libadwaita override"
   if [[ -f "$STATE_DIR/gtk4-gtk.css.backup" ]]; then
     mv "$STATE_DIR/gtk4-gtk.css.backup" "$GTK4_CSS"
   else
@@ -53,18 +53,18 @@ if [[ -f "$GTK4_CSS" ]] && grep -q "$MARKER" "$GTK4_CSS"; then
   fi
 fi
 
-# Só desfaz a liberação do Flatpak se foi o install.sh que a criou, e tira
-# apenas essa entrada (--reset apagaria os outros overrides do usuário).
+# Only undo the Flatpak access if install.sh granted it, and remove just that
+# entry (--reset would wipe the user's other overrides).
 if [[ -f "$STATE_DIR/flatpak-override" && -f "$FLATPAK_OVERRIDES" ]]; then
-  step "Removendo a liberação do gtk.css para apps Flatpak"
+  step "Removing Flatpak access to gtk.css"
   sed -i -E '/^filesystems=/ s#(=|;)xdg-config/gtk-4\.0:ro;#\1#' "$FLATPAK_OVERRIDES"
   sed -i '/^filesystems=$/d' "$FLATPAK_OVERRIDES"
 fi
 
-step "Removendo arquivos"
+step "Removing files"
 rm -rf "$HOME/.themes/WinXPRemix" "$HOME/.themes/WinXPRemix-Dark" \
        "$DATA_DIR/backgrounds/winxpremix" \
        "$DATA_DIR/gnome-background-properties/winxpremix.xml" \
        "$STATE_DIR"
 
-step "WinXPRemix removido."
+step "WinXPRemix removed."

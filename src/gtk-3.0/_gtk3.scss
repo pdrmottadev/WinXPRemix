@@ -1,7 +1,7 @@
 // WinXPRemix — GTK 3
 //
-// Usa o Adwaita embutido no GTK3 como base (importado pelos arquivos de
-// entrada) e aplica o visual Luna por cima.
+// Uses the Adwaita theme built into GTK3 as the base (imported by the entry
+// files) and applies the Luna look on top.
 
 @import '../palette';
 
@@ -30,7 +30,7 @@
 }
 
 // ---------------------------------------------------------------------------
-// Janela e superfícies
+// Window and surfaces
 // ---------------------------------------------------------------------------
 
 window.background,
@@ -63,7 +63,7 @@ selection,
 }
 
 // ---------------------------------------------------------------------------
-// Barra de título Luna
+// Luna title bar
 // ---------------------------------------------------------------------------
 
 headerbar,
@@ -111,7 +111,7 @@ headerbar button:not(.suggested-action):not(.destructive-action):not(.titlebutto
 headerbar button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.link):not(.osd):active,
 headerbar button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.link):not(.osd):checked {
   background-color: rgba(0, 20, 80, 0.30);
-  background-image: none; // senão vence o gradiente claro do :checked genérico (texto branco no branco)
+  background-image: none; // otherwise the light gradient of the generic :checked wins (white on white)
   border-color: rgba(0, 0, 0, 0.20);
   box-shadow: none;
   color: $title-fg;
@@ -162,7 +162,7 @@ headerbar button.titlebutton:not(.appmenu).close:backdrop {
 }
 
 // ---------------------------------------------------------------------------
-// Botões
+// Buttons
 // ---------------------------------------------------------------------------
 
 button:not(.flat):not(.titlebutton):not(.suggested-action):not(.destructive-action):not(.link),
@@ -222,7 +222,7 @@ button.destructive-action:hover {
 }
 
 // ---------------------------------------------------------------------------
-// Entradas
+// Entries
 // ---------------------------------------------------------------------------
 
 entry,
@@ -246,7 +246,7 @@ spinbutton entry {
 }
 
 // ---------------------------------------------------------------------------
-// Check, rádio, switch
+// Check, radio, switch
 // ---------------------------------------------------------------------------
 
 check,
@@ -292,7 +292,7 @@ switch slider {
 }
 
 // ---------------------------------------------------------------------------
-// Progresso e sliders
+// Progress and sliders
 // ---------------------------------------------------------------------------
 
 progressbar trough {
@@ -323,7 +323,7 @@ scale slider:hover {
 }
 
 // ---------------------------------------------------------------------------
-// Abas
+// Tabs
 // ---------------------------------------------------------------------------
 
 notebook > header.top > tabs > tab:checked    { box-shadow: inset 0 3px $hot; }
@@ -334,7 +334,7 @@ notebook > header.right > tabs > tab:checked  { box-shadow: inset -3px 0 $hot; }
 notebook > header.top > tabs > tab:hover:not(:checked) { box-shadow: inset 0 3px $hot-light; }
 
 // ---------------------------------------------------------------------------
-// Menus e popovers
+// Menus and popovers
 // ---------------------------------------------------------------------------
 
 menu,
@@ -371,7 +371,7 @@ popover modelbutton.flat:hover {
 }
 
 // ---------------------------------------------------------------------------
-// Barra lateral (painel azul do Explorer)
+// Sidebar (blue Explorer pane)
 // ---------------------------------------------------------------------------
 
 .sidebar,
@@ -391,7 +391,7 @@ stacksidebar row:selected,
 }
 
 // ---------------------------------------------------------------------------
-// Dicas, barras de rolagem
+// Tooltips, scrollbars
 // ---------------------------------------------------------------------------
 
 tooltip,

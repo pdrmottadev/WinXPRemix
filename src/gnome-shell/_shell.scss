@@ -1,11 +1,11 @@
 // WinXPRemix — GNOME Shell 50+
 //
-// O arquivo de entrada importa a variante clara ou escura do tema padrão do
-// Shell (gnome-shell-light/dark.css) e este arquivo sobrescreve por cima.
-// Importar a base explicitamente torna o resultado independente de qual
-// variante o Shell escolheu sozinho (no modo "padrão" ele usa a escura).
+// The entry file imports the light or dark variant of the default Shell theme
+// (gnome-shell-light/dark.css) and this file overrides it. Importing the base
+// explicitly makes the result independent of the variant the Shell picked on
+// its own (in "default" mode it uses the dark one).
 //
-// Limitações do St: gradientes só de duas cores e uma única box-shadow.
+// St limitations: two-color gradients only, and a single box-shadow.
 
 @import '../palette';
 
@@ -35,7 +35,7 @@
 }
 
 // ---------------------------------------------------------------------------
-// Barra superior = barra de tarefas Luna
+// Top bar = Luna taskbar
 // ---------------------------------------------------------------------------
 
 #panel,
@@ -83,7 +83,7 @@
   icon-shadow: 0 1px 1px rgba(0, 0, 0, 0.35);
 }
 
-// Botão "Iniciar" (Atividades): pílula verde colada à borda esquerda
+// "Start" button (Activities): green pill attached to the left edge
 #panel .panel-button#panelActivities {
   @include vgradient($start-top, $start-bottom);
   border: none;
@@ -112,7 +112,7 @@
   background-color: #ffffff;
 }
 
-// Lado direito = área de notificação
+// Right side = notification area
 #panelRight {
   @include vgradient($tray-top, $tray-bottom);
   border-left: 1px solid $tray-edge;
@@ -137,7 +137,7 @@
 }
 
 // ---------------------------------------------------------------------------
-// Menus e popovers — estilo menu do XP: borda azul, seleção azul
+// Menus and popovers — XP menu style: blue border, blue selection
 // ---------------------------------------------------------------------------
 
 .popup-menu {
@@ -203,7 +203,7 @@
 }
 
 // ---------------------------------------------------------------------------
-// Botões genéricos — botão XP arredondado, hover laranja
+// Generic buttons — rounded XP button, orange hover
 // ---------------------------------------------------------------------------
 
 .button,
@@ -246,7 +246,7 @@
 }
 
 // ---------------------------------------------------------------------------
-// Configurações rápidas — lembra o menu Iniciar
+// Quick settings — reminiscent of the Start menu
 // ---------------------------------------------------------------------------
 
 .quick-settings {
@@ -254,7 +254,7 @@
   border: 2px solid $popover-border;
   border-radius: 16px;
   padding: 16px;
-  box-shadow: none; // gradiente + sombra externa vira um retângulo no St
+  box-shadow: none; // gradient + outer shadow becomes a rectangle in St
 }
 
 .quick-settings .quick-toggle,
@@ -368,7 +368,7 @@
 }
 
 // ---------------------------------------------------------------------------
-// Controles
+// Controls
 // ---------------------------------------------------------------------------
 
 .toggle-switch {
@@ -434,7 +434,7 @@ StScrollBar > .hhandle:hover {
 }
 
 // ---------------------------------------------------------------------------
-// Entradas de texto e busca
+// Text entries and search
 // ---------------------------------------------------------------------------
 
 StEntry,
@@ -476,7 +476,7 @@ StEntry StLabel.hint-text {
 }
 
 // ---------------------------------------------------------------------------
-// Calendário / menu de data
+// Calendar / date menu
 // ---------------------------------------------------------------------------
 
 .datemenu-today-button .date-label,
@@ -519,7 +519,7 @@ StEntry StLabel.hint-text {
 }
 
 // ---------------------------------------------------------------------------
-// Notificações = balões amarelos do XP
+// Notifications = yellow XP balloons
 // ---------------------------------------------------------------------------
 
 .message {
@@ -567,7 +567,7 @@ StEntry StLabel.hint-text {
 }
 
 // ---------------------------------------------------------------------------
-// Diálogos modais — janela XP: bege com faixa azul no topo
+// Modal dialogs — XP window: beige with a blue strip on top
 // ---------------------------------------------------------------------------
 
 .modal-dialog {
@@ -576,7 +576,7 @@ StEntry StLabel.hint-text {
   border: 2px solid $title-edge;
   border-top: 8px solid $title-mid;
   border-radius: 14px;
-  box-shadow: none; // com borda não-uniforme o St desenha a sombra quadrada
+  box-shadow: none; // with a non-uniform border St draws a square shadow
 }
 
 .modal-dialog .modal-dialog-button-box {
@@ -585,7 +585,7 @@ StEntry StLabel.hint-text {
 }
 
 // ---------------------------------------------------------------------------
-// OSD (volume, brilho, troca de workspace)
+// OSD (volume, brightness, workspace switch)
 // ---------------------------------------------------------------------------
 
 .osd-window {
@@ -644,7 +644,7 @@ StEntry StLabel.hint-text {
 }
 
 // ---------------------------------------------------------------------------
-// Visão geral: dash como barra de tarefas flutuante
+// Overview: the dash as a floating taskbar
 // ---------------------------------------------------------------------------
 
 #dash .dash-background {
@@ -692,7 +692,7 @@ StEntry StLabel.hint-text {
   font-weight: bold;
 }
 
-// Grade de apps
+// App grid
 .overview-tile:hover,
 .overview-tile:focus,
 .grid-search-result:hover,
@@ -724,7 +724,7 @@ StEntry StLabel.hint-text {
   background-color: rgba(255, 255, 255, 0.85);
 }
 
-// Resultados de busca
+// Search results
 .search-section-content {
   background-color: pick(rgba(255, 255, 255, 0.92), rgba(30, 34, 44, 0.92));
   border: 1px solid $popover-border;
@@ -745,25 +745,26 @@ StEntry StLabel.hint-text {
   color: rgba(255, 255, 255, 0.85);
 }
 
-// Miniaturas de workspaces
+// Workspace thumbnails
 .workspace-thumbnail-indicator {
   border: 3px solid $hot-light;
   border-radius: 10px;
 }
 
 // ---------------------------------------------------------------------------
-// Tela de bloqueio — painel "Bem-vindo" do XP
+// Lock screen — XP "Welcome" panel
 // ---------------------------------------------------------------------------
 //
-// O papel de parede desfocado é filho do .unlock-dialog e cobre o fundo dele,
-// então não dá para tingir a tela inteira pelo CSS. O relógio e o campo de
-// senha ganham um painel azul Luna; as notificações viram balões amarelos.
+// The blurred wallpaper is a child of .unlock-dialog and covers its
+// background, so the whole screen cannot be tinted from CSS. The clock and
+// the password field get a Luna blue panel; notifications become yellow
+// balloons.
 
 @mixin welcome-panel {
   @include vgradient(transparentize($taskbar-top, 0.12), transparentize($title-bottom, 0.12));
   border: 2px solid rgba(255, 255, 255, 0.55);
   border-radius: 18px;
-  box-shadow: none; // gradiente + sombra externa vira um retângulo no St
+  box-shadow: none; // gradient + outer shadow becomes a rectangle in St
 }
 
 .unlock-dialog-clock {
@@ -788,7 +789,7 @@ StEntry StLabel.hint-text {
   padding: 24px;
 }
 
-// O AuthPrompt tem um segundo .login-dialog-prompt-layout dentro (o da senha)
+// AuthPrompt has a second .login-dialog-prompt-layout inside (the password one)
 .unlock-dialog .login-dialog-prompt-layout .login-dialog-prompt-layout {
   background-gradient-direction: none;
   background-color: transparent;
@@ -802,8 +803,8 @@ StEntry StLabel.hint-text {
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.45);
 }
 
-// Avatar com moldura branca. Redondo porque a imagem gerada com as iniciais
-// já vem em círculo; fotos quadradas são recortadas pelo raio.
+// Avatar with a white frame. Round because the generated initials image is
+// already a circle; square photos are clipped by the radius.
 .unlock-dialog .user-widget .user-icon {
   border-radius: 999px;
   border: 3px solid #ffffff;
@@ -811,7 +812,7 @@ StEntry StLabel.hint-text {
   color: #ffffff;
 }
 
-// Campo branco nas duas variantes: fica sempre sobre o painel azul
+// White field in both variants: it always sits on the blue panel
 .unlock-dialog .login-dialog-prompt-entry,
 .unlock-dialog .login-dialog-prompt-entry:hover {
   background-color: #ffffff;
@@ -824,7 +825,7 @@ StEntry StLabel.hint-text {
   border-color: lighten($selection, 15%);
 }
 
-// A base usa !important no foco; só assim dá para trocar
+// The base uses !important on focus; this is the only way to override it
 .unlock-dialog .login-dialog-prompt-entry:focus {
   border-color: $selection;
   box-shadow: inset 0 0 0 1px $selection !important;

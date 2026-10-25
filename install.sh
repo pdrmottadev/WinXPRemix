@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-# Instala e aplica o WinXPRemix para o usuário atual (sem sudo).
+# Installs and applies WinXPRemix for the current user (no sudo).
 #
-#   ./install.sh                 instala e aplica tudo
-#   ./install.sh --no-apply      só copia os arquivos
-#   ./install.sh --no-gtk4       não mexe em ~/.config/gtk-4.0/gtk.css
-#   ./install.sh --no-wallpaper  não troca o papel de parede
-#   ./install.sh --no-follow     não alterna Shell/GTK3 com o modo claro/escuro
-#   ./install.sh --no-flatpak    não libera o gtk.css para apps Flatpak
+#   ./install.sh                 install and apply everything
+#   ./install.sh --no-apply      only copy the files
+#   ./install.sh --no-gtk4       leave ~/.config/gtk-4.0/gtk.css alone
+#   ./install.sh --no-wallpaper  don't change the wallpaper
+#   ./install.sh --no-follow     don't switch Shell/GTK3 with light/dark mode
+#   ./install.sh --no-flatpak    don't give Flatpak apps access to gtk.css
 set -euo pipefail
 
 SRC="$(dirname "$(readlink -f "$0")")"
@@ -20,7 +20,7 @@ for arg in "$@"; do
     --no-follow)    FOLLOW=0 ;;
     --no-flatpak)   FLATPAK=0 ;;
     -h|--help)      sed -n '2,9p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
-    *) echo "opção desconhecida: $arg" >&2; exit 1 ;;
+    *) echo "unknown option: $arg" >&2; exit 1 ;;
   esac
 done
 
@@ -39,54 +39,54 @@ EXT_DIR="$DATA_DIR/gnome-shell/extensions"
 MARKER='WinXPRemix — GTK 4 / libadwaita'
 
 step() { printf '\033[1;34m==>\033[0m %s\n' "$*"; }
-warn() { printf '\033[1;33m aviso:\033[0m %s\n' "$*"; }
+warn() { printf '\033[1;33m warning:\033[0m %s\n' "$*"; }
 
-# --- Compilação -------------------------------------------------------------
+# --- Build ------------------------------------------------------------------
 
 if command -v sassc >/dev/null 2>&1; then
-  step "Compilando o tema"
+  step "Building the theme"
   "$SRC/build.sh" >/dev/null
 elif [[ ! -d "$SRC/themes/WinXPRemix" ]]; then
-  echo "erro: sassc não encontrado e não há tema pré-compilado em themes/" >&2
+  echo "error: sassc not found and there is no prebuilt theme in themes/" >&2
   exit 1
 fi
 
-# --- Arquivos ---------------------------------------------------------------
+# --- Files ------------------------------------------------------------------
 
-step "Copiando temas para $THEMES_DIR"
+step "Copying themes to $THEMES_DIR"
 mkdir -p "$THEMES_DIR" "$STATE_DIR"
 for name in WinXPRemix WinXPRemix-Dark; do
   rm -rf "${THEMES_DIR:?}/$name"
   cp -r "$SRC/themes/$name" "$THEMES_DIR/$name"
 done
 
-# A User Themes é desativada ao bloquear a tela; esta extensão mantém o tema lá
-step "Instalando a extensão da tela de bloqueio"
+# User Themes is disabled when the screen locks; this extension keeps the theme there
+step "Installing the lock screen extension"
 mkdir -p "$EXT_DIR"
 rm -rf "${EXT_DIR:?}/$LOCK_UUID"
 cp -r "$SRC/extras/$LOCK_UUID" "$EXT_DIR/$LOCK_UUID"
 
 if (( GTK4 )); then
-  step "Instalando override do libadwaita em $GTK4_CSS"
+  step "Installing the libadwaita override to $GTK4_CSS"
   mkdir -p "$(dirname "$GTK4_CSS")"
   if [[ -f "$GTK4_CSS" ]] && ! grep -q "$MARKER" "$GTK4_CSS"; then
     cp "$GTK4_CSS" "$STATE_DIR/gtk4-gtk.css.backup"
-    warn "seu gtk.css anterior foi salvo em $STATE_DIR/gtk4-gtk.css.backup"
+    warn "your previous gtk.css was saved to $STATE_DIR/gtk4-gtk.css.backup"
   fi
   cp "$SRC/themes/WinXPRemix/gtk-4.0/libadwaita.css" "$GTK4_CSS"
 fi
 
-# Apps Flatpak só enxergam o gtk.css com acesso de leitura a ~/.config/gtk-4.0.
-# A marca em $STATE_DIR diz ao uninstall.sh que fomos nós que liberamos.
+# Flatpak apps only see gtk.css with read access to ~/.config/gtk-4.0.
+# The marker in $STATE_DIR tells uninstall.sh that we granted it.
 if (( GTK4 && FLATPAK )) && command -v flatpak >/dev/null 2>&1 &&
    ! grep -qs '^filesystems=.*xdg-config/gtk-4\.0' "$FLATPAK_OVERRIDES"; then
-  step "Liberando o gtk.css para apps Flatpak"
+  step "Giving Flatpak apps access to gtk.css"
   flatpak override --user --filesystem=xdg-config/gtk-4.0:ro
   touch "$STATE_DIR/flatpak-override"
 fi
 
 if (( WALLPAPER )); then
-  step "Instalando papéis de parede"
+  step "Installing wallpapers"
   mkdir -p "$BG_DIR" "$DATA_DIR/gnome-background-properties"
   cp "$SRC"/wallpapers/*.svg "$BG_DIR/"
   cat > "$DATA_DIR/gnome-background-properties/winxpremix.xml" <<EOF
@@ -94,7 +94,7 @@ if (( WALLPAPER )); then
 <!DOCTYPE wallpapers SYSTEM "gnome-wp-list.dtd">
 <wallpapers>
   <wallpaper deleted="false">
-    <name>WinXPRemix Colina</name>
+    <name>WinXPRemix Hill</name>
     <filename>$BG_DIR/winxpremix-day.svg</filename>
     <filename-dark>$BG_DIR/winxpremix-night.svg</filename-dark>
     <options>zoom</options>
@@ -107,24 +107,24 @@ EOF
 fi
 
 if (( FOLLOW )); then
-  step "Instalando alternância automática claro/escuro"
+  step "Installing automatic light/dark switching"
   mkdir -p "$(dirname "$FOLLOW_BIN")" "$(dirname "$AUTOSTART")"
   install -m 755 "$SRC/extras/winxpremix-follow-scheme" "$FOLLOW_BIN"
   cat > "$AUTOSTART" <<EOF
 [Desktop Entry]
 Type=Application
-Name=WinXPRemix: seguir modo claro/escuro
+Name=WinXPRemix: follow light/dark mode
 Exec=$FOLLOW_BIN
 NoDisplay=true
 X-GNOME-Autostart-enabled=true
 EOF
 fi
 
-(( APPLY )) || { step "Pronto (sem aplicar)."; exit 0; }
+(( APPLY )) || { step "Done (not applied)."; exit 0; }
 
-# --- Aplicação --------------------------------------------------------------
+# --- Apply ------------------------------------------------------------------
 
-# Guarda as configurações atuais uma única vez, para o uninstall.sh restaurar.
+# Save the current settings once, so uninstall.sh can restore them.
 if [[ ! -f "$STATE_DIR/previous-settings" ]]; then
   {
     echo "gtk-theme=$(gsettings get org.gnome.desktop.interface gtk-theme)"
@@ -142,7 +142,7 @@ case "$(gsettings get org.gnome.desktop.interface color-scheme)" in
   *)      THEME=WinXPRemix ;;
 esac
 
-step "Aplicando $THEME"
+step "Applying $THEME"
 gsettings set org.gnome.desktop.interface gtk-theme "$THEME"
 gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:minimize,maximize,close'
 
@@ -150,8 +150,8 @@ if gnome-extensions info "$USER_THEME_UUID" >/dev/null 2>&1; then
   gnome-extensions enable "$USER_THEME_UUID" || true
   gsettings set org.gnome.shell.extensions.user-theme name "$THEME"
 
-  # Acrescenta a extensão da tela de bloqueio à lista, sem mexer nas outras.
-  # O Shell só enxerga extensões novas no próximo login.
+  # Add the lock screen extension to the list without touching the others.
+  # The Shell only picks up new extensions at the next login.
   enabled=$(gsettings get org.gnome.shell enabled-extensions)
   if [[ $enabled != *"'$LOCK_UUID'"* ]]; then
     case "$enabled" in
@@ -161,9 +161,9 @@ if gnome-extensions info "$USER_THEME_UUID" >/dev/null 2>&1; then
     gsettings set org.gnome.shell enabled-extensions "$enabled"
   fi
   gnome-extensions info "$LOCK_UUID" >/dev/null 2>&1 ||
-    warn "saia e entre de novo na sessão para o tema valer também na tela de bloqueio."
+    warn "log out and back in for the theme to apply to the lock screen too."
 else
-  warn "extensão User Themes não encontrada; o tema do Shell não foi aplicado."
+  warn "User Themes extension not found; the Shell theme was not applied."
   warn "Fedora: sudo dnf install gnome-shell-extension-user-theme"
 fi
 
@@ -177,4 +177,4 @@ if (( FOLLOW )); then
   setsid "$FOLLOW_BIN" >/dev/null 2>&1 < /dev/null &
 fi
 
-step "Pronto! Apps já abertos precisam ser reabertos para pegar o novo visual."
+step "Done! Apps that are already open need to be reopened to pick up the new look."

@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
-# WinXPRemix: troca as variantes clara/escura do Shell e do GTK3 junto com o
-# modo claro/escuro do GNOME. O GTK4/libadwaita já faz isso sozinho.
+# WinXPRemix: switches the light/dark variants of the Shell and GTK3 themes
+# along with GNOME's light/dark mode. GTK4/libadwaita already does this on its
+# own.
 #
-# Só age enquanto o tema GTK atual for WinXPRemix*, para não atropelar outro
-# tema que você escolher depois.
+# It only acts while the current GTK theme is WinXPRemix*, so it doesn't
+# override another theme you pick later.
 
 IFACE=org.gnome.desktop.interface
 USER_THEME=org.gnome.shell.extensions.user-theme

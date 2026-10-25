@@ -131,19 +131,20 @@
 /*
  * WinXPRemix — GTK 4 / libadwaita
  *
- * Apps libadwaita ignoram temas GTK; a única forma suportada de mudar a
- * aparência é ~/.config/gtk-4.0/gtk.css, que tem prioridade de usuário
- * (vence o libadwaita independentemente de especificidade). Por isso este
- * arquivo mexe só no que é preciso e usa variáveis próprias (--xp-*), para
- * funcionar também em apps GTK4 sem libadwaita.
+ * libadwaita apps ignore GTK themes; the only supported way to change how
+ * they look is ~/.config/gtk-4.0/gtk.css, which has user priority (it beats
+ * libadwaita regardless of specificity). That is why this file only touches
+ * what it needs and uses its own variables (--xp-*), so it also works in
+ * GTK4 apps without libadwaita.
  *
- * As variáveis --xp-* não ficam aqui: o build.sh gera a partir de
- * src/_palette.scss (via palette.scss) e as coloca antes deste arquivo, com
- * os valores claros em :root e os escuros em @media (prefers-color-scheme).
+ * The --xp-* variables are not defined here: build.sh generates them from
+ * src/_palette.scss (through palette.scss) and puts them before this file,
+ * with the light values in :root and the dark ones in
+ * @media (prefers-color-scheme).
  */
 
 /* ------------------------------------------------------------------------ */
-/* Variáveis do libadwaita                                                  */
+/* libadwaita variables                                                     */
 /* ------------------------------------------------------------------------ */
 
 :root {
@@ -183,7 +184,7 @@
 }
 
 /* ------------------------------------------------------------------------ */
-/* Barra de título Luna                                                     */
+/* Luna title bar                                                           */
 /* ------------------------------------------------------------------------ */
 
 headerbar,
@@ -215,11 +216,12 @@ toolbarview > .top-bar headerbar:backdrop > windowhandle {
 }
 
 /*
- * Quando a toolbarview empilha mais de uma barra (headerbar + barra de busca,
- * mesmo escondida), o libadwaita aplica .collapse-spacing: 3px de padding no
- * contêiner e headerbar de 40px. Como o gradiente fica na headerbar, sobravam
- * faixas escuras em cima e embaixo e a barra ficava mais baixa que a do outro
- * painel (Arquivos, Configurações). Devolve à headerbar a altura normal.
+ * When a toolbarview stacks more than one bar (headerbar + search bar, even
+ * a hidden one), libadwaita applies .collapse-spacing: 3px of padding on the
+ * container and a 40px headerbar. Since the gradient is on the headerbar,
+ * dark strips were left above and below it, and the bar was shorter than the
+ * one in the other pane (Files, Settings). Give the headerbar its normal
+ * height back.
  */
 toolbarview > .top-bar .collapse-spacing,
 toolbarview > .bottom-bar .collapse-spacing {
@@ -253,7 +255,7 @@ windowtitle .subtitle {
   text-shadow: 1px 1px 1px rgb(0 0 0 / 30%);
 }
 
-/* Entradas na barra de título: "barra de endereços" branca */
+/* Entries in the title bar: white "address bar" */
 headerbar entry,
 headerbar spinbutton,
 headerbar searchbar entry {
@@ -261,7 +263,7 @@ headerbar searchbar entry {
   color: var(--xp-view-fg);
 }
 
-/* Botões da janela: quadrados arredondados, fechar vermelho */
+/* Window buttons: rounded squares, red close */
 windowcontrols > button > image {
   border-radius: 5px;
   padding: 3px;
@@ -295,7 +297,7 @@ windowcontrols > button.close:active > image {
 }
 
 /* ------------------------------------------------------------------------ */
-/* Botões                                                                   */
+/* Buttons                                                                  */
 /* ------------------------------------------------------------------------ */
 
 button.text-button:not(.flat):not(.suggested-action):not(.destructive-action):not(.osd):not(.link):not(:checked),
@@ -323,7 +325,7 @@ spinbutton > button:active {
   background-image: linear-gradient(to bottom, var(--xp-btn-bottom), var(--xp-btn-top));
 }
 
-/* Na barra de título os botões continuam planos, como no libadwaita */
+/* In the title bar buttons stay flat, like in libadwaita */
 headerbar button.text-button:not(.suggested-action):not(.destructive-action):not(.raised),
 headerbar button.image-text-button:not(.suggested-action):not(.destructive-action):not(.raised),
 headerbar dropdown > button,
@@ -369,24 +371,24 @@ button.destructive-action:disabled {
   filter: saturate(0.3) opacity(0.6);
 }
 
-/* Pílulas grandes (telas de boas-vindas etc.) */
+/* Large pills (welcome screens etc.) */
 button.pill.suggested-action {
   box-shadow: inset 0 0 0 1px var(--xp-suggested-edge), inset 0 1px rgb(255 255 255 / 35%),
               0 2px 6px color-mix(in srgb, var(--xp-selection) 35%, transparent);
 }
 
-/* Botões planos: borda XP no hover, como nas barras de ferramentas do XP */
+/* Flat buttons: XP border on hover, like the XP toolbars */
 button.flat:hover:not(:checked):not(:active):not(.osd):not(.link) {
   box-shadow: inset 0 0 0 1px var(--xp-btn-border);
 }
 
-/* Na barra de título o hover é branco translúcido (igual ao GTK3) */
+/* In the title bar the hover is translucent white (same as GTK3) */
 headerbar button:not(.suggested-action):not(.destructive-action):not(.raised):not(.osd):not(.minimize):not(.maximize):not(.close):hover {
   background-color: rgb(255 255 255 / 16%);
   box-shadow: inset 0 0 0 1px rgb(255 255 255 / 30%);
 }
 
-/* Grupos de alternância (libadwaita 1.7+): calha com o item ativo em azul */
+/* Toggle groups (libadwaita 1.7+): a trough with the active item in blue */
 toggle-group:not(.flat) {
   background-color: var(--xp-btn-bottom);
   box-shadow: inset 0 0 0 1px var(--xp-btn-border);
@@ -407,7 +409,7 @@ toggle-group:not(.flat) > toggle:checked:disabled {
   filter: saturate(0.3) opacity(0.6);
 }
 
-/* Botões sobre imagens/vídeo (.osd): azul do OSD do Shell */
+/* Buttons over images/video (.osd): Shell OSD blue */
 button.osd {
   background-color: var(--xp-osd-bg);
   color: #ffffff;
@@ -423,7 +425,7 @@ button.osd:checked {
 }
 
 /* ------------------------------------------------------------------------ */
-/* Entradas                                                                 */
+/* Entries                                                                  */
 /* ------------------------------------------------------------------------ */
 
 entry,
@@ -445,7 +447,7 @@ entry.error:focus-within {
   box-shadow: inset 0 0 0 1px var(--error-bg-color), inset 0 0 0 2px color-mix(in srgb, var(--error-bg-color) 30%, transparent);
 }
 
-/* Linhas de entrada do libadwaita ficam dentro de listas: mantém sem borda */
+/* libadwaita entry rows live inside lists: keep them borderless */
 row.entry,
 row.entry:focus-within,
 .boxed-list row.entry,
@@ -456,7 +458,7 @@ row.spin spinbutton:focus-within {
 }
 
 /* ------------------------------------------------------------------------ */
-/* Caixas de seleção, rádios e chaves — o "check" verde do XP              */
+/* Checkboxes, radios and switches — the green XP check                     */
 /* ------------------------------------------------------------------------ */
 
 check,
@@ -497,7 +499,7 @@ switch > slider {
 }
 
 /* ------------------------------------------------------------------------ */
-/* Barras de progresso em blocos verdes, sliders                            */
+/* Green block progress bars, sliders                                       */
 /* ------------------------------------------------------------------------ */
 
 progressbar > trough {
@@ -532,7 +534,7 @@ scale > trough > slider:hover {
 }
 
 /* ------------------------------------------------------------------------ */
-/* Abas: destaque laranja no topo da aba ativa                              */
+/* Tabs: orange highlight on top of the active tab                          */
 /* ------------------------------------------------------------------------ */
 
 tabbar tab:selected,
@@ -540,7 +542,7 @@ notebook > header > tabs > tab:checked {
   box-shadow: inset 0 3px var(--xp-hot);
 }
 
-/* A aba ativa assume a cor do conteúdo, como se estivesse "na frente" */
+/* The active tab takes the content color, as if it were "in front" */
 tabbar tab:selected {
   background-color: var(--xp-view-bg);
 }
@@ -555,7 +557,7 @@ viewswitcher button.toggle:checked {
 }
 
 /* ------------------------------------------------------------------------ */
-/* Popovers e menus                                                         */
+/* Popovers and menus                                                       */
 /* ------------------------------------------------------------------------ */
 
 popover > contents {
@@ -577,10 +579,10 @@ popover.menu modelbutton:selected accelerator {
 }
 
 /* ------------------------------------------------------------------------ */
-/* Diálogos de alerta = janela XP: faixa azul no topo e moldura             */
+/* Alert dialogs = XP window: blue strip on top and a frame                 */
 /* ------------------------------------------------------------------------ */
 
-/* A regra do usuário substitui a sombra do libadwaita, então ela é repetida */
+/* The user rule replaces the libadwaita shadow, so it is repeated here */
 dialog-host > dialog.alert sheet,
 window.dialog-window.alert.csd,
 window.messagedialog.csd {
@@ -592,7 +594,7 @@ window.messagedialog.csd {
 }
 
 /* ------------------------------------------------------------------------ */
-/* Listas, cards e barra lateral                                            */
+/* Lists, cards and sidebar                                                 */
 /* ------------------------------------------------------------------------ */
 
 .boxed-list,
@@ -614,7 +616,7 @@ listview.navigation-sidebar > row:selected {
 }
 
 /* ------------------------------------------------------------------------ */
-/* Dicas = balão amarelo                                                     */
+/* Tooltips = yellow balloon                                                */
 /* ------------------------------------------------------------------------ */
 
 tooltip.background,
@@ -630,7 +632,7 @@ tooltip > * {
 }
 
 /* ------------------------------------------------------------------------ */
-/* Seleção de texto e rolagem                                               */
+/* Text selection and scrolling                                             */
 /* ------------------------------------------------------------------------ */
 
 selection,

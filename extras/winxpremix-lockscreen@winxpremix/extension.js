@@ -1,10 +1,11 @@
-// WinXPRemix: tela de bloqueio
+// WinXPRemix: lock screen
 //
-// Ao bloquear, o Shell entra no modo "unlock-dialog" e desativa as extensões
-// que não declaram esse modo. A User Themes é uma delas, e o disable() dela
-// volta o Shell ao tema padrão. Esta extensão declara o modo e, só enquanto a
-// tela está bloqueada, reaplica a folha de estilo do WinXPRemix escolhida na
-// User Themes. Fora do bloqueio ela não faz nada.
+// When the screen locks, the Shell switches to the "unlock-dialog" mode and
+// disables the extensions that don't declare that mode. User Themes is one of
+// them, and its disable() puts the Shell back on the default theme. This
+// extension declares the mode and, only while the screen is locked, reapplies
+// the WinXPRemix stylesheet selected in User Themes. Outside the lock screen
+// it does nothing.
 
 import Gio from 'gi://Gio';
 import GLib from 'gi://GLib';
@@ -22,7 +23,7 @@ function winxpStylesheet() {
     if (!name.startsWith('WinXPRemix'))
         return null;
 
-    // Mesma ordem de busca da User Themes
+    // Same search order as User Themes
     const dirs = [
         GLib.build_filenamev([GLib.get_home_dir(), '.themes']),
         GLib.build_filenamev([GLib.get_user_data_dir(), 'themes']),
@@ -49,7 +50,7 @@ export default class WinXPRemixLockScreen extends Extension {
             GLib.source_remove(this._idleId);
         this._idleId = 0;
 
-        // Só desfaz se fomos nós que aplicamos (tela ainda bloqueada)
+        // Only undo it if we applied it (screen still locked)
         if (this._applied) {
             Main.setThemeStylesheet(null);
             Main.loadTheme();
@@ -57,7 +58,7 @@ export default class WinXPRemixLockScreen extends Extension {
         this._applied = false;
     }
 
-    // Roda depois que o gerenciador de extensões já desativou a User Themes
+    // Runs after the extension manager has already disabled User Themes
     _queueSync() {
         if (this._idleId)
             return;
@@ -70,7 +71,7 @@ export default class WinXPRemixLockScreen extends Extension {
 
     _sync() {
         if (Main.sessionMode.currentMode !== 'unlock-dialog') {
-            // De volta à sessão: a User Themes reaplica o tema sozinha
+            // Back in the session: User Themes reapplies the theme on its own
             this._applied = false;
             return;
         }
