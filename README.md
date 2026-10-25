@@ -4,7 +4,7 @@ O visual **Luna** do Windows XP reimaginado para o **GNOME 50+**: a barra de tar
 o botão Iniciar verde, barras de título em gradiente e os balões amarelos de notificação,
 com cantos arredondados, superfícies limpas e um modo escuro de verdade.
 
-**Versão 1.1.0** · [histórico de mudanças](CHANGELOG.md)
+**Versão 1.1.1** · [histórico de mudanças](CHANGELOG.md)
 
 ![Apps libadwaita](screenshots/libadwaita-claro.png)
 
@@ -15,6 +15,14 @@ com cantos arredondados, superfícies limpas e um modo escuro de verdade.
 | Modo escuro | GTK 3 |
 |---|---|
 | ![](screenshots/escuro-nautilus.png) | ![](screenshots/gtk3-claro.png) |
+
+| Tela de bloqueio | Visão geral |
+|---|---|
+| ![](screenshots/tela-bloqueio.png) | ![](screenshots/visao-geral.png) |
+
+| Diálogo de alerta | Grupos de alternância |
+|---|---|
+| ![](screenshots/libadwaita-dialogo.png) | ![](screenshots/libadwaita-controles.png) |
 
 ## O que muda
 
@@ -50,11 +58,14 @@ Tudo fica na sua conta de usuário, sem `sudo`:
 | `~/.themes/WinXPRemix` e `~/.themes/WinXPRemix-Dark` | Shell + GTK3 + GTK4 |
 | `~/.config/gtk-4.0/gtk.css` | Override do libadwaita. Se já existia um arquivo, ele é guardado em `~/.local/share/winxpremix/` |
 | `~/.local/share/backgrounds/winxpremix/` | Papéis de parede, que também aparecem em Configurações → Aparência |
+| `~/.local/share/gnome-shell/extensions/winxpremix-lockscreen@winxpremix` | Extensão auxiliar que mantém o tema na tela de bloqueio (a User Themes é desativada ao bloquear) |
 | `~/.local/bin/winxpremix-follow-scheme` + autostart | Troca as variantes clara/escura do Shell e do GTK3 junto com o modo escuro do GNOME |
 | Override global do Flatpak (`--user`) | Acesso de leitura a `~/.config/gtk-4.0`, para apps Flatpak também pegarem o tema |
 
-O script também ativa a extensão User Themes, seleciona o tema e ajusta os botões da janela para
-`minimizar, maximizar, fechar`. **Apps abertos precisam ser reabertos.**
+O script também ativa a extensão User Themes e a extensão da tela de bloqueio, seleciona o tema e
+ajusta os botões da janela para `minimizar, maximizar, fechar`. **Apps abertos precisam ser
+reabertos.** Na primeira instalação, saia e entre de novo na sessão: o Shell só carrega extensões
+novas no login, e até lá a tela de bloqueio fica com o visual padrão.
 
 Opções: `--no-apply`, `--no-gtk4`, `--no-wallpaper`, `--no-follow`, `--no-flatpak` (veja `./install.sh --help`).
 
@@ -79,6 +90,8 @@ src/
   gtk-4.0/gtk.css               regras do GTK4/libadwaita (sem cores próprias; o build junta
                                 as variáveis geradas antes delas)
 extras/winxpremix-follow-scheme acompanha o modo claro/escuro
+extras/winxpremix-lockscreen@winxpremix
+                                extensão que mantém o tema do Shell na tela de bloqueio
 wallpapers/                     SVGs "Colina" dia/noite
 themes/                         saída compilada (./build.sh), versionada de propósito
 VERSION                         versão atual (vai para o index.theme no build)
@@ -111,5 +124,7 @@ Ao lançar uma versão, atualize o `VERSION`, a linha de versão no topo deste R
   (`flatpak override --user --filesystem=xdg-config/gtk-4.0:ro`); use `--no-flatpak` para não liberar.
 - **Ícones e cursores** não fazem parte do tema. Combinam bem com ele os sets no estilo XP disponíveis no GNOME-Look.
 - **Login (GDM)** continua com o visual padrão, porque usa o tema do sistema e exige root.
-- **Tela de bloqueio:** o papel de parede desfocado fica por cima do fundo da tela, então só o
-  painel central recebe o azul Luna, e a tela inteira não pode ser tingida.
+- **Tela de bloqueio:** a User Themes é desativada ao bloquear, então o tema só aparece ali com a
+  extensão `winxpremix-lockscreen@winxpremix`, que o `install.sh` instala. O papel de parede
+  desfocado fica por cima do fundo da tela, então só o painel central recebe o azul Luna, e a
+  tela inteira não pode ser tingida.

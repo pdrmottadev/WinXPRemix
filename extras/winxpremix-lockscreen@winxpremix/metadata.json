@@ -1,0 +1,7 @@
+{
+  "uuid": "winxpremix-lockscreen@winxpremix",
+  "name": "WinXPRemix: tela de bloqueio",
+  "description": "Mantém o tema WinXPRemix do Shell na tela de bloqueio. A User Themes é desativada ao bloquear, e o Shell volta ao tema padrão.",
+  "shell-version": ["50"],
+  "session-modes": ["user", "unlock-dialog"]
+}

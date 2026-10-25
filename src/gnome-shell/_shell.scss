@@ -788,25 +788,35 @@ StEntry StLabel.hint-text {
   padding: 24px;
 }
 
+// O AuthPrompt tem um segundo .login-dialog-prompt-layout dentro (o da senha)
+.unlock-dialog .login-dialog-prompt-layout .login-dialog-prompt-layout {
+  background-gradient-direction: none;
+  background-color: transparent;
+  border-width: 0;
+  padding: 0;
+}
+
 .unlock-dialog .user-widget .user-widget-label {
   color: #ffffff;
   font-weight: bold;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.45);
 }
 
-// Avatar em quadrado arredondado com moldura branca, como na tela do XP
+// Avatar com moldura branca. Redondo porque a imagem gerada com as iniciais
+// já vem em círculo; fotos quadradas são recortadas pelo raio.
 .unlock-dialog .user-widget .user-icon {
-  border-radius: 12px;
+  border-radius: 999px;
   border: 3px solid #ffffff;
   background-color: rgba(255, 255, 255, 0.18);
   color: #ffffff;
 }
 
+// Campo branco nas duas variantes: fica sempre sobre o painel azul
 .unlock-dialog .login-dialog-prompt-entry,
 .unlock-dialog .login-dialog-prompt-entry:hover {
-  background-color: $view-bg;
-  color: $view-fg;
-  border: 1px solid $entry-border;
+  background-color: #ffffff;
+  color: #1b1d22;
+  border: 1px solid #7f9db9;
   border-radius: 8px;
 }
 
@@ -821,7 +831,11 @@ StEntry StLabel.hint-text {
 }
 
 .unlock-dialog .login-dialog-prompt-entry StLabel.hint-text {
-  color: transparentize($view-fg, 0.45);
+  color: rgba(27, 29, 34, 0.55);
+}
+
+.unlock-dialog .login-dialog-prompt-entry .peek-password {
+  color: rgba(27, 29, 34, 0.7);
 }
 
 .unlock-dialog .button,

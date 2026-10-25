@@ -3,6 +3,26 @@
 O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/), e as versões
 seguem o [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 
+## 1.1.1 - 2026-10-25
+
+### Corrigido
+
+- **Tela de bloqueio sem o tema:** a User Themes é desativada quando a tela bloqueia, e o Shell
+  voltava ao tema padrão. Por isso o visual da tela de bloqueio da 1.1.0 nunca aparecia. A nova
+  extensão `winxpremix-lockscreen@winxpremix`, instalada pelo `install.sh`, mantém o tema
+  WinXPRemix enquanto a tela está bloqueada. É preciso sair e entrar de novo uma vez.
+- **Detalhes da tela de bloqueio:**
+  - aparecia um segundo painel azul em volta do campo de senha;
+  - o avatar ficava num quadrado com a imagem redonda dentro e agora é redondo, com moldura branca;
+  - o campo de senha agora é branco também no modo escuro.
+- **GTK3:** o botão selecionado na barra de título (como as abas do widget factory) ficava com
+  texto branco sobre fundo branco, e o hover deixava um contorno laranja dentro da barra azul.
+
+### Mudado
+
+- Capturas de tela refeitas, com imagens novas da tela de bloqueio, da visão geral, do
+  diálogo de alerta e dos grupos de alternância.
+
 ## 1.1.0 - 2026-10-25
 
 ### Adicionado

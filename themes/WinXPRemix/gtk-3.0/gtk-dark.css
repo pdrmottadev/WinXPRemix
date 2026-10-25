@@ -75,12 +75,16 @@ headerbar button:not(.suggested-action):not(.destructive-action):not(.titlebutto
 headerbar button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.link):not(.osd):hover {
   background-color: rgba(255, 255, 255, 0.16);
   border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: none;
 }
 
 headerbar button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.link):not(.osd):active,
 headerbar button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.link):not(.osd):checked {
   background-color: rgba(0, 20, 80, 0.3);
+  background-image: none;
   border-color: rgba(0, 0, 0, 0.2);
+  box-shadow: none;
+  color: #ffffff;
 }
 
 headerbar entry {

@@ -7,6 +7,7 @@ CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"
 STATE_DIR="$DATA_DIR/winxpremix"
 GTK4_CSS="$CONFIG_DIR/gtk-4.0/gtk.css"
 FOLLOW_BIN="$HOME/.local/bin/winxpremix-follow-scheme"
+LOCK_UUID=winxpremix-lockscreen@winxpremix
 FLATPAK_OVERRIDES="$DATA_DIR/flatpak/overrides/global"
 MARKER='WinXPRemix — GTK 4 / libadwaita'
 
@@ -15,6 +16,16 @@ step() { printf '\033[1;34m==>\033[0m %s\n' "$*"; }
 step "Parando alternância automática"
 pkill -f "$FOLLOW_BIN" 2>/dev/null || true
 rm -f "$FOLLOW_BIN" "$CONFIG_DIR/autostart/winxpremix-follow-scheme.desktop"
+
+step "Removendo a extensão da tela de bloqueio"
+enabled=$(gsettings get org.gnome.shell enabled-extensions)
+if [[ $enabled == *"'$LOCK_UUID'"* ]]; then
+  enabled=${enabled//", '$LOCK_UUID'"/}
+  enabled=${enabled//"'$LOCK_UUID', "/}
+  enabled=${enabled//"'$LOCK_UUID'"/}
+  gsettings set org.gnome.shell enabled-extensions "$enabled"
+fi
+rm -rf "${DATA_DIR:?}/gnome-shell/extensions/$LOCK_UUID"
 
 step "Restaurando configurações"
 if [[ -f "$STATE_DIR/previous-settings" ]]; then

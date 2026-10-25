@@ -34,6 +34,8 @@ FOLLOW_BIN="$HOME/.local/bin/winxpremix-follow-scheme"
 AUTOSTART="$CONFIG_DIR/autostart/winxpremix-follow-scheme.desktop"
 FLATPAK_OVERRIDES="$DATA_DIR/flatpak/overrides/global"
 USER_THEME_UUID=user-theme@gnome-shell-extensions.gcampax.github.com
+LOCK_UUID=winxpremix-lockscreen@winxpremix
+EXT_DIR="$DATA_DIR/gnome-shell/extensions"
 MARKER='WinXPRemix — GTK 4 / libadwaita'
 
 step() { printf '\033[1;34m==>\033[0m %s\n' "$*"; }
@@ -57,6 +59,12 @@ for name in WinXPRemix WinXPRemix-Dark; do
   rm -rf "${THEMES_DIR:?}/$name"
   cp -r "$SRC/themes/$name" "$THEMES_DIR/$name"
 done
+
+# A User Themes é desativada ao bloquear a tela; esta extensão mantém o tema lá
+step "Instalando a extensão da tela de bloqueio"
+mkdir -p "$EXT_DIR"
+rm -rf "${EXT_DIR:?}/$LOCK_UUID"
+cp -r "$SRC/extras/$LOCK_UUID" "$EXT_DIR/$LOCK_UUID"
 
 if (( GTK4 )); then
   step "Instalando override do libadwaita em $GTK4_CSS"
@@ -141,6 +149,19 @@ gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:minimize,m
 if gnome-extensions info "$USER_THEME_UUID" >/dev/null 2>&1; then
   gnome-extensions enable "$USER_THEME_UUID" || true
   gsettings set org.gnome.shell.extensions.user-theme name "$THEME"
+
+  # Acrescenta a extensão da tela de bloqueio à lista, sem mexer nas outras.
+  # O Shell só enxerga extensões novas no próximo login.
+  enabled=$(gsettings get org.gnome.shell enabled-extensions)
+  if [[ $enabled != *"'$LOCK_UUID'"* ]]; then
+    case "$enabled" in
+      "@as []"|"[]") enabled="['$LOCK_UUID']" ;;
+      *)             enabled="${enabled%]}, '$LOCK_UUID']" ;;
+    esac
+    gsettings set org.gnome.shell enabled-extensions "$enabled"
+  fi
+  gnome-extensions info "$LOCK_UUID" >/dev/null 2>&1 ||
+    warn "saia e entre de novo na sessão para o tema valer também na tela de bloqueio."
 else
   warn "extensão User Themes não encontrada; o tema do Shell não foi aplicado."
   warn "Fedora: sudo dnf install gnome-shell-extension-user-theme"
