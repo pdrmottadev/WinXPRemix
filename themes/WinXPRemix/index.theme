@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=WinXPRemix
+Comment=Windows XP Luna reimaginado para GNOME 50+ (v1.1.0)
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+GtkTheme=WinXPRemix
+IconTheme=Adwaita
+CursorTheme=Adwaita
+ButtonLayout=appmenu:minimize,maximize,close

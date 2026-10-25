@@ -1,0 +1,90 @@
+// WinXPRemix — variáveis --xp-* do GTK 4, geradas a partir de _palette.scss
+//
+// O build.sh compila este arquivo e o coloca antes de gtk.css. A paleta é
+// importada duas vezes: o libsass reavalia o @import, então cada passada
+// recalcula as cores com o $variant da vez.
+
+@mixin xp-vars {
+  --xp-title-top: #{$title-top};
+  --xp-title-mid: #{$title-mid};
+  --xp-title-bottom: #{$title-bottom};
+  --xp-title-edge: #{$title-edge};
+  --xp-title-backdrop-top: #{$title-backdrop-top};
+  --xp-title-backdrop-bottom: #{$title-backdrop-bottom};
+
+  --xp-selection: #{$selection};
+  --xp-hot: #{$hot};
+  --xp-hot-light: #{$hot-light};
+  --xp-green: #{$check-green};
+  --xp-accent: #{$accent-color};
+
+  --xp-ctl-top: #{$ctl-top};
+  --xp-ctl-bottom: #{$ctl-bottom};
+  --xp-ctl-hover-top: #{$ctl-hover-top};
+  --xp-ctl-hover-bottom: #{$ctl-hover-bot};
+  --xp-ctl-active-top: #{$ctl-active-top};
+  --xp-close-top: #{$close-top};
+  --xp-close-bottom: #{$close-bottom};
+  --xp-close-edge: #{$close-edge};
+  --xp-close-hover-top: #{$close-hover-top};
+  --xp-close-hover-bottom: #{$close-hover-bot};
+  --xp-close-active-top: #{$close-active-top};
+  --xp-suggested-top: #{$suggested-top};
+  --xp-suggested-edge: #{$suggested-edge};
+  --xp-suggested-hover-top: #{$suggested-hover-top};
+  --xp-suggested-hover-bottom: #{$suggested-hover-bot};
+
+  --xp-progress-top: #{$progress-top};
+  --xp-progress-bottom: #{$progress-bottom};
+  --xp-knob-top: #{$knob-top};
+  --xp-knob-bottom: #{$knob-bottom};
+  --xp-knob-border: #{$knob-border};
+  --xp-check-border: #{$check-border};
+
+  --xp-bg: #{$bg};
+  --xp-fg: #{$fg};
+  --xp-view-bg: #{$view-bg};
+  --xp-view-fg: #{$view-fg};
+  --xp-card-bg: #{$card-bg};
+  --xp-card-border: #{$card-border};
+  --xp-toolbar-bg: #{$toolbar-bg};
+  --xp-sidebar-bg: #{$sidebar-bg};
+  --xp-sidebar-fg: #{$sidebar-fg};
+  --xp-sidebar-border: #{$sidebar-border};
+  --xp-sidebar-backdrop: #{$sidebar-backdrop};
+  --xp-secondary-sidebar-bg: #{$secondary-sidebar-bg};
+  --xp-secondary-sidebar-backdrop: #{$secondary-sidebar-backdrop};
+  --xp-popover-bg: #{$popover-bg};
+  --xp-popover-border: #{$popover-border};
+  --xp-entry-border: #{$entry-border};
+  --xp-btn-top: #{$btn-top};
+  --xp-btn-bottom: #{$btn-bottom};
+  --xp-btn-border: #{$btn-border};
+  --xp-btn-fg: #{$btn-fg};
+  --xp-balloon-bg: #{$balloon-bg};
+  --xp-balloon-fg: #{$balloon-fg};
+  --xp-balloon-border: #{$balloon-border};
+  --xp-osd-bg: #{$osd-bg};
+
+  --xp-success: #{$success};
+  --xp-error: #{$error};
+  --xp-success-text: #{$success-text};
+  --xp-warning-text: #{$warning-text};
+  --xp-error-text: #{$error-text};
+}
+
+$variant: 'light';
+@import '../palette';
+
+:root {
+  @include xp-vars;
+}
+
+$variant: 'dark';
+@import '../palette';
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    @include xp-vars;
+  }
+}

@@ -1,0 +1,660 @@
+:root {
+  --xp-title-top: #4a95f7;
+  --xp-title-mid: #1a5ae0;
+  --xp-title-bottom: #0b4bd0;
+  --xp-title-edge: #0a3a9e;
+  --xp-title-backdrop-top: #a5bdf0;
+  --xp-title-backdrop-bottom: #7d9ade;
+  --xp-selection: #316ac5;
+  --xp-hot: #f5a623;
+  --xp-hot-light: #ffc85a;
+  --xp-green: #21a121;
+  --xp-accent: #2a5fb8;
+  --xp-ctl-top: #5d9bff;
+  --xp-ctl-bottom: #2560dc;
+  --xp-ctl-hover-top: #82b4ff;
+  --xp-ctl-hover-bottom: #3a74ee;
+  --xp-ctl-active-top: #1d50c0;
+  --xp-close-top: #f37b5a;
+  --xp-close-bottom: #cf3d1f;
+  --xp-close-edge: #8f1d0b;
+  --xp-close-hover-top: #ff9a7c;
+  --xp-close-hover-bottom: #e2502f;
+  --xp-close-active-top: #b02f14;
+  --xp-suggested-top: #5b93ec;
+  --xp-suggested-edge: #234f99;
+  --xp-suggested-hover-top: #75a7f5;
+  --xp-suggested-hover-bottom: #3e78d4;
+  --xp-progress-top: #8ee07a;
+  --xp-progress-bottom: #2ea12e;
+  --xp-knob-top: #ffffff;
+  --xp-knob-bottom: #e9e7de;
+  --xp-knob-border: #1c5180;
+  --xp-check-border: #1c5180;
+  --xp-bg: #f0eee4;
+  --xp-fg: #1b1d22;
+  --xp-view-bg: #ffffff;
+  --xp-view-fg: #1b1d22;
+  --xp-card-bg: #ffffff;
+  --xp-card-border: #d4cfbb;
+  --xp-toolbar-bg: #ebe8dc;
+  --xp-sidebar-bg: #e2eaf9;
+  --xp-sidebar-fg: #1e3a7a;
+  --xp-sidebar-border: #b9c9ea;
+  --xp-sidebar-backdrop: #e9eef8;
+  --xp-secondary-sidebar-bg: #edf1fa;
+  --xp-secondary-sidebar-backdrop: #f1f4fa;
+  --xp-popover-bg: #ffffff;
+  --xp-popover-border: #2a5fcf;
+  --xp-entry-border: #7f9db9;
+  --xp-btn-top: #ffffff;
+  --xp-btn-bottom: #e9e7de;
+  --xp-btn-border: rgba(0, 60, 116, 0.55);
+  --xp-btn-fg: #1b1d22;
+  --xp-balloon-bg: #ffffe1;
+  --xp-balloon-fg: #1b1d22;
+  --xp-balloon-border: #c9b97a;
+  --xp-osd-bg: rgba(14, 44, 120, 0.92);
+  --xp-success: #2e9e3e;
+  --xp-error: #d93a2b;
+  --xp-success-text: #1f7f2c;
+  --xp-warning-text: #a86b00;
+  --xp-error-text: #c02a1c;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --xp-title-top: #3f86ee;
+    --xp-title-mid: #164fc8;
+    --xp-title-bottom: #0b40b2;
+    --xp-title-edge: #082d7a;
+    --xp-title-backdrop-top: #3d4d72;
+    --xp-title-backdrop-bottom: #2b3756;
+    --xp-selection: #316ac5;
+    --xp-hot: #f5a623;
+    --xp-hot-light: #ffc85a;
+    --xp-green: #21a121;
+    --xp-accent: #7aa7ff;
+    --xp-ctl-top: #5d9bff;
+    --xp-ctl-bottom: #2560dc;
+    --xp-ctl-hover-top: #82b4ff;
+    --xp-ctl-hover-bottom: #3a74ee;
+    --xp-ctl-active-top: #1d50c0;
+    --xp-close-top: #f37b5a;
+    --xp-close-bottom: #cf3d1f;
+    --xp-close-edge: #8f1d0b;
+    --xp-close-hover-top: #ff9a7c;
+    --xp-close-hover-bottom: #e2502f;
+    --xp-close-active-top: #b02f14;
+    --xp-suggested-top: #5b93ec;
+    --xp-suggested-edge: #234f99;
+    --xp-suggested-hover-top: #75a7f5;
+    --xp-suggested-hover-bottom: #3e78d4;
+    --xp-progress-top: #8ee07a;
+    --xp-progress-bottom: #2ea12e;
+    --xp-knob-top: #ffffff;
+    --xp-knob-bottom: #e9e7de;
+    --xp-knob-border: #1c5180;
+    --xp-check-border: #5a7fb8;
+    --xp-bg: #1f2229;
+    --xp-fg: #e8eaf0;
+    --xp-view-bg: #16181d;
+    --xp-view-fg: #e8eaf0;
+    --xp-card-bg: #262a33;
+    --xp-card-border: #363b47;
+    --xp-toolbar-bg: #262a33;
+    --xp-sidebar-bg: #1a2741;
+    --xp-sidebar-fg: #d6e2ff;
+    --xp-sidebar-border: #2a3a5c;
+    --xp-sidebar-backdrop: #1d2638;
+    --xp-secondary-sidebar-bg: #1d2639;
+    --xp-secondary-sidebar-backdrop: #1f2533;
+    --xp-popover-bg: #2a2e38;
+    --xp-popover-border: #1f4fb8;
+    --xp-entry-border: #4a5a78;
+    --xp-btn-top: #3b404c;
+    --xp-btn-bottom: #2c3039;
+    --xp-btn-border: rgba(255, 255, 255, 0.14);
+    --xp-btn-fg: #eef0f5;
+    --xp-balloon-bg: #34321f;
+    --xp-balloon-fg: #f3edc8;
+    --xp-balloon-border: #6b6440;
+    --xp-osd-bg: rgba(14, 44, 120, 0.92);
+    --xp-success: #2e9e3e;
+    --xp-error: #d93a2b;
+    --xp-success-text: #5fd06b;
+    --xp-warning-text: #f2c14e;
+    --xp-error-text: #ff7b6b;
+  }
+}
+
+/*
+ * WinXPRemix — GTK 4 / libadwaita
+ *
+ * Apps libadwaita ignoram temas GTK; a única forma suportada de mudar a
+ * aparência é ~/.config/gtk-4.0/gtk.css, que tem prioridade de usuário
+ * (vence o libadwaita independentemente de especificidade). Por isso este
+ * arquivo mexe só no que é preciso e usa variáveis próprias (--xp-*), para
+ * funcionar também em apps GTK4 sem libadwaita.
+ *
+ * As variáveis --xp-* não ficam aqui: o build.sh gera a partir de
+ * src/_palette.scss (via palette.scss) e as coloca antes deste arquivo, com
+ * os valores claros em :root e os escuros em @media (prefers-color-scheme).
+ */
+
+/* ------------------------------------------------------------------------ */
+/* Variáveis do libadwaita                                                  */
+/* ------------------------------------------------------------------------ */
+
+:root {
+  --accent-bg-color: var(--xp-selection);
+  --accent-fg-color: #ffffff;
+  --accent-color: var(--xp-accent);
+  --window-bg-color: var(--xp-bg);
+  --window-fg-color: var(--xp-fg);
+  --view-bg-color: var(--xp-view-bg);
+  --view-fg-color: var(--xp-view-fg);
+  --headerbar-bg-color: var(--xp-toolbar-bg);
+  --headerbar-fg-color: var(--xp-fg);
+  --headerbar-backdrop-color: var(--xp-bg);
+  --headerbar-border-color: var(--xp-card-border);
+  --sidebar-bg-color: var(--xp-sidebar-bg);
+  --sidebar-fg-color: var(--xp-sidebar-fg);
+  --sidebar-backdrop-color: var(--xp-sidebar-backdrop);
+  --sidebar-border-color: var(--xp-sidebar-border);
+  --secondary-sidebar-bg-color: var(--xp-secondary-sidebar-bg);
+  --secondary-sidebar-fg-color: var(--xp-sidebar-fg);
+  --secondary-sidebar-backdrop-color: var(--xp-secondary-sidebar-backdrop);
+  --card-bg-color: var(--xp-card-bg);
+  --card-fg-color: var(--xp-fg);
+  --dialog-bg-color: var(--xp-bg);
+  --dialog-fg-color: var(--xp-fg);
+  --popover-bg-color: var(--xp-popover-bg);
+  --popover-fg-color: var(--xp-fg);
+  --thumbnail-bg-color: var(--xp-card-bg);
+  --success-bg-color: var(--xp-success);
+  --success-color: var(--xp-success-text);
+  --warning-color: var(--xp-warning-text);
+  --error-bg-color: var(--xp-error);
+  --error-color: var(--xp-error-text);
+  --destructive-bg-color: var(--xp-error);
+  --destructive-color: var(--xp-error-text);
+  --window-radius: 10px;
+}
+
+/* ------------------------------------------------------------------------ */
+/* Barra de título Luna                                                     */
+/* ------------------------------------------------------------------------ */
+
+headerbar,
+toolbarview > .top-bar headerbar,
+toolbarview > .bottom-bar headerbar,
+headerbar.flat {
+  background-color: var(--xp-title-bottom);
+  background-image: linear-gradient(to bottom,
+                                    var(--xp-title-top),
+                                    var(--xp-title-mid) 45%,
+                                    var(--xp-title-bottom));
+  color: #ffffff;
+  box-shadow: inset 0 1px rgb(255 255 255 / 35%),
+              inset 0 -1px var(--xp-title-edge);
+}
+
+headerbar:backdrop,
+toolbarview > .top-bar headerbar:backdrop,
+toolbarview > .bottom-bar headerbar:backdrop {
+  background-color: var(--xp-title-backdrop-bottom);
+  background-image: linear-gradient(to bottom,
+                                    var(--xp-title-backdrop-top),
+                                    var(--xp-title-backdrop-bottom));
+}
+
+headerbar:backdrop > windowhandle,
+toolbarview > .top-bar headerbar:backdrop > windowhandle {
+  filter: saturate(0.4) opacity(0.9);
+}
+
+/*
+ * Quando a toolbarview empilha mais de uma barra (headerbar + barra de busca,
+ * mesmo escondida), o libadwaita aplica .collapse-spacing: 3px de padding no
+ * contêiner e headerbar de 40px. Como o gradiente fica na headerbar, sobravam
+ * faixas escuras em cima e embaixo e a barra ficava mais baixa que a do outro
+ * painel (Arquivos, Configurações). Devolve à headerbar a altura normal.
+ */
+toolbarview > .top-bar .collapse-spacing,
+toolbarview > .bottom-bar .collapse-spacing {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+toolbarview > .top-bar .collapse-spacing headerbar:not(.default-decoration),
+toolbarview > .bottom-bar .collapse-spacing headerbar:not(.default-decoration) {
+  min-height: 46px;
+}
+
+toolbarview > .top-bar .collapse-spacing headerbar:not(.default-decoration) > windowhandle > box,
+toolbarview > .bottom-bar .collapse-spacing headerbar:not(.default-decoration) > windowhandle > box {
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+toolbarview > .top-bar .collapse-spacing searchbar > revealer > box {
+  padding-bottom: 6px;
+}
+
+headerbar .title,
+windowtitle .title {
+  font-weight: 800;
+  text-shadow: 1px 1px 1px rgb(0 0 0 / 40%);
+}
+
+headerbar .subtitle,
+windowtitle .subtitle {
+  text-shadow: 1px 1px 1px rgb(0 0 0 / 30%);
+}
+
+/* Entradas na barra de título: "barra de endereços" branca */
+headerbar entry,
+headerbar spinbutton,
+headerbar searchbar entry {
+  background-color: var(--xp-view-bg);
+  color: var(--xp-view-fg);
+}
+
+/* Botões da janela: quadrados arredondados, fechar vermelho */
+windowcontrols > button > image {
+  border-radius: 5px;
+  padding: 3px;
+  color: #ffffff;
+  background-color: var(--xp-ctl-bottom);
+  background-image: linear-gradient(to bottom, var(--xp-ctl-top), var(--xp-ctl-bottom));
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 85%),
+              0 1px 2px rgb(0 0 0 / 35%);
+  -gtk-icon-shadow: 0 1px rgb(0 0 0 / 35%);
+}
+
+windowcontrols > button:hover > image {
+  background-image: linear-gradient(to bottom, var(--xp-ctl-hover-top), var(--xp-ctl-hover-bottom));
+}
+
+windowcontrols > button:active > image {
+  background-image: linear-gradient(to bottom, var(--xp-ctl-active-top), var(--xp-ctl-hover-bottom));
+}
+
+windowcontrols > button.close > image {
+  background-color: var(--xp-close-bottom);
+  background-image: linear-gradient(to bottom, var(--xp-close-top), var(--xp-close-bottom));
+}
+
+windowcontrols > button.close:hover > image {
+  background-image: linear-gradient(to bottom, var(--xp-close-hover-top), var(--xp-close-hover-bottom));
+}
+
+windowcontrols > button.close:active > image {
+  background-image: linear-gradient(to bottom, var(--xp-close-active-top), var(--xp-close-hover-bottom));
+}
+
+/* ------------------------------------------------------------------------ */
+/* Botões                                                                   */
+/* ------------------------------------------------------------------------ */
+
+button.text-button:not(.flat):not(.suggested-action):not(.destructive-action):not(.osd):not(.link):not(:checked),
+button.image-text-button:not(.flat):not(.suggested-action):not(.destructive-action):not(.osd):not(:checked),
+dropdown > button:not(.flat),
+combobox > box > button:not(.flat),
+spinbutton > button {
+  background-image: linear-gradient(to bottom, var(--xp-btn-top), var(--xp-btn-bottom));
+  color: var(--xp-btn-fg);
+  box-shadow: inset 0 0 0 1px var(--xp-btn-border);
+}
+
+button.text-button:not(.flat):not(.suggested-action):not(.destructive-action):not(.osd):not(.link):not(:checked):hover,
+button.image-text-button:not(.flat):not(.suggested-action):not(.destructive-action):not(.osd):not(:checked):hover,
+dropdown > button:not(.flat):hover,
+combobox > box > button:not(.flat):hover,
+spinbutton > button:hover {
+  box-shadow: inset 0 0 0 1px var(--xp-hot), inset 0 0 0 2px var(--xp-hot-light);
+}
+
+button.text-button:not(.flat):not(.suggested-action):not(.destructive-action):not(.osd):not(.link):active,
+button.image-text-button:not(.flat):not(.suggested-action):not(.destructive-action):not(.osd):active,
+dropdown > button:not(.flat):active,
+spinbutton > button:active {
+  background-image: linear-gradient(to bottom, var(--xp-btn-bottom), var(--xp-btn-top));
+}
+
+/* Na barra de título os botões continuam planos, como no libadwaita */
+headerbar button.text-button:not(.suggested-action):not(.destructive-action):not(.raised),
+headerbar button.image-text-button:not(.suggested-action):not(.destructive-action):not(.raised),
+headerbar dropdown > button,
+headerbar spinbutton > button,
+spinbutton.vertical > button,
+spinbutton > button.flat {
+  background-image: none;
+  box-shadow: none;
+  color: inherit;
+}
+
+button.suggested-action,
+button.default {
+  background-image: linear-gradient(to bottom, var(--xp-suggested-top), var(--xp-selection));
+  color: #ffffff;
+  box-shadow: inset 0 0 0 1px var(--xp-suggested-edge), inset 0 1px rgb(255 255 255 / 30%);
+}
+
+button.suggested-action:hover,
+button.default:hover {
+  background-image: linear-gradient(to bottom, var(--xp-suggested-hover-top), var(--xp-suggested-hover-bottom));
+  box-shadow: inset 0 0 0 1px var(--xp-hot), inset 0 0 0 2px var(--xp-hot-light);
+}
+
+button.destructive-action {
+  background-image: linear-gradient(to bottom, var(--xp-close-top), var(--xp-close-bottom));
+  color: #ffffff;
+  box-shadow: inset 0 0 0 1px var(--xp-close-edge), inset 0 1px rgb(255 255 255 / 30%);
+}
+
+button.destructive-action:hover {
+  background-image: linear-gradient(to bottom, var(--xp-close-hover-top), var(--xp-close-hover-bottom));
+}
+
+button.suggested-action:active,
+button.default:active,
+button.destructive-action:active {
+  filter: brightness(0.92);
+}
+
+button.suggested-action:disabled,
+button.destructive-action:disabled {
+  filter: saturate(0.3) opacity(0.6);
+}
+
+/* Pílulas grandes (telas de boas-vindas etc.) */
+button.pill.suggested-action {
+  box-shadow: inset 0 0 0 1px var(--xp-suggested-edge), inset 0 1px rgb(255 255 255 / 35%),
+              0 2px 6px color-mix(in srgb, var(--xp-selection) 35%, transparent);
+}
+
+/* Botões planos: borda XP no hover, como nas barras de ferramentas do XP */
+button.flat:hover:not(:checked):not(:active):not(.osd):not(.link) {
+  box-shadow: inset 0 0 0 1px var(--xp-btn-border);
+}
+
+/* Na barra de título o hover é branco translúcido (igual ao GTK3) */
+headerbar button:not(.suggested-action):not(.destructive-action):not(.raised):not(.osd):not(.minimize):not(.maximize):not(.close):hover {
+  background-color: rgb(255 255 255 / 16%);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 30%);
+}
+
+/* Grupos de alternância (libadwaita 1.7+): calha com o item ativo em azul */
+toggle-group:not(.flat) {
+  background-color: var(--xp-btn-bottom);
+  box-shadow: inset 0 0 0 1px var(--xp-btn-border);
+}
+
+toggle-group:not(.flat) > toggle:hover:not(:checked) {
+  box-shadow: inset 0 0 0 1px var(--xp-hot), inset 0 0 0 2px var(--xp-hot-light);
+}
+
+toggle-group:not(.flat) > toggle:checked {
+  background-color: var(--xp-selection);
+  background-image: linear-gradient(to bottom, var(--xp-suggested-top), var(--xp-selection));
+  color: #ffffff;
+  box-shadow: inset 0 0 0 1px var(--xp-suggested-edge), inset 0 1px rgb(255 255 255 / 30%);
+}
+
+toggle-group:not(.flat) > toggle:checked:disabled {
+  filter: saturate(0.3) opacity(0.6);
+}
+
+/* Botões sobre imagens/vídeo (.osd): azul do OSD do Shell */
+button.osd {
+  background-color: var(--xp-osd-bg);
+  color: #ffffff;
+}
+
+button.osd:hover {
+  background-color: color-mix(in srgb, white 12%, var(--xp-osd-bg));
+}
+
+button.osd:active,
+button.osd:checked {
+  background-color: color-mix(in srgb, black 20%, var(--xp-osd-bg));
+}
+
+/* ------------------------------------------------------------------------ */
+/* Entradas                                                                 */
+/* ------------------------------------------------------------------------ */
+
+entry,
+spinbutton {
+  background-color: var(--xp-view-bg);
+  color: var(--xp-view-fg);
+  box-shadow: inset 0 0 0 1px var(--xp-entry-border);
+  border-radius: 6px;
+}
+
+entry:focus-within,
+spinbutton:focus-within {
+  box-shadow: inset 0 0 0 1px var(--xp-selection), inset 0 0 0 2px color-mix(in srgb, var(--xp-selection) 35%, transparent);
+  outline-color: transparent;
+}
+
+entry.error,
+entry.error:focus-within {
+  box-shadow: inset 0 0 0 1px var(--error-bg-color), inset 0 0 0 2px color-mix(in srgb, var(--error-bg-color) 30%, transparent);
+}
+
+/* Linhas de entrada do libadwaita ficam dentro de listas: mantém sem borda */
+row.entry,
+row.entry:focus-within,
+.boxed-list row.entry,
+row.spin spinbutton,
+row.spin spinbutton:focus-within {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+/* ------------------------------------------------------------------------ */
+/* Caixas de seleção, rádios e chaves — o "check" verde do XP              */
+/* ------------------------------------------------------------------------ */
+
+check,
+radio {
+  background-color: var(--xp-view-bg);
+  background-image: linear-gradient(to bottom right, rgb(0 0 0 / 6%), transparent);
+  box-shadow: inset 0 0 0 1px var(--xp-check-border);
+  color: var(--xp-green);
+}
+
+check {
+  border-radius: 4px;
+}
+
+check:hover,
+radio:hover {
+  box-shadow: inset 0 0 0 1px var(--xp-hot), inset 0 0 0 2px var(--xp-hot-light);
+}
+
+check:checked,
+check:indeterminate,
+radio:checked {
+  background-color: var(--xp-view-bg);
+  color: var(--xp-green);
+}
+
+switch {
+  box-shadow: inset 0 0 0 1px rgb(0 40 90 / 20%);
+}
+
+switch:checked {
+  background-color: var(--xp-green);
+  color: #ffffff;
+}
+
+switch > slider {
+  box-shadow: 0 1px 3px rgb(0 0 0 / 35%);
+}
+
+/* ------------------------------------------------------------------------ */
+/* Barras de progresso em blocos verdes, sliders                            */
+/* ------------------------------------------------------------------------ */
+
+progressbar > trough {
+  background-color: var(--xp-view-bg);
+  box-shadow: inset 0 0 0 1px var(--xp-entry-border);
+}
+
+progressbar > trough > progress {
+  background-color: var(--xp-progress-bottom);
+  background-image: repeating-linear-gradient(to right,
+                                              transparent 0, transparent 9px,
+                                              rgb(255 255 255 / 55%) 9px, rgb(255 255 255 / 55%) 11px),
+                    linear-gradient(to bottom, var(--xp-progress-top), var(--xp-progress-bottom));
+}
+
+progressbar.osd > trough > progress {
+  background-image: none;
+  background-color: var(--xp-green);
+}
+
+scale > trough > highlight {
+  background-color: var(--xp-selection);
+}
+
+scale > trough > slider {
+  background-image: linear-gradient(to bottom, var(--xp-knob-top), var(--xp-knob-bottom));
+  box-shadow: inset 0 0 0 1px var(--xp-knob-border), 0 1px 2px rgb(0 0 0 / 30%);
+}
+
+scale > trough > slider:hover {
+  box-shadow: inset 0 0 0 1px var(--xp-hot), inset 0 0 0 2px var(--xp-hot-light), 0 1px 2px rgb(0 0 0 / 30%);
+}
+
+/* ------------------------------------------------------------------------ */
+/* Abas: destaque laranja no topo da aba ativa                              */
+/* ------------------------------------------------------------------------ */
+
+tabbar tab:selected,
+notebook > header > tabs > tab:checked {
+  box-shadow: inset 0 3px var(--xp-hot);
+}
+
+/* A aba ativa assume a cor do conteúdo, como se estivesse "na frente" */
+tabbar tab:selected {
+  background-color: var(--xp-view-bg);
+}
+
+tabbar tab:hover:not(:selected),
+notebook > header > tabs > tab:hover:not(:checked) {
+  box-shadow: inset 0 3px var(--xp-hot-light);
+}
+
+viewswitcher button.toggle:checked {
+  box-shadow: inset 0 -3px var(--xp-hot);
+}
+
+/* ------------------------------------------------------------------------ */
+/* Popovers e menus                                                         */
+/* ------------------------------------------------------------------------ */
+
+popover > contents {
+  box-shadow: 0 0 0 1px var(--xp-popover-border),
+              0 4px 14px rgb(0 0 0 / 25%);
+  border-radius: 10px;
+}
+
+popover.menu modelbutton:hover,
+popover.menu modelbutton:selected,
+popover.menu modelbutton:focus-visible {
+  background-color: var(--xp-selection);
+  color: #ffffff;
+}
+
+popover.menu modelbutton:hover accelerator,
+popover.menu modelbutton:selected accelerator {
+  color: rgb(255 255 255 / 75%);
+}
+
+/* ------------------------------------------------------------------------ */
+/* Diálogos de alerta = janela XP: faixa azul no topo e moldura             */
+/* ------------------------------------------------------------------------ */
+
+/* A regra do usuário substitui a sombra do libadwaita, então ela é repetida */
+dialog-host > dialog.alert sheet,
+window.dialog-window.alert.csd,
+window.messagedialog.csd {
+  box-shadow: inset 0 8px var(--xp-title-mid),
+              inset 0 0 0 2px var(--xp-title-edge),
+              0 0 14px 2px rgb(0 0 6 / 3%),
+              0 0 5px 2px rgb(0 0 6 / 10%),
+              0 0 0 1px rgb(0 0 0 / 5%);
+}
+
+/* ------------------------------------------------------------------------ */
+/* Listas, cards e barra lateral                                            */
+/* ------------------------------------------------------------------------ */
+
+.boxed-list,
+.boxed-list-separate > row,
+.card {
+  box-shadow: 0 0 0 1px var(--xp-card-border),
+              0 1px 3px rgb(0 0 0 / 6%);
+}
+
+.navigation-sidebar > row:selected,
+.navigation-sidebar > row:selected:hover,
+listview.navigation-sidebar > row:selected {
+  background-color: var(--xp-selection);
+  color: #ffffff;
+}
+
+.navigation-sidebar > row:hover:not(:selected) {
+  background-color: color-mix(in srgb, var(--xp-selection) 12%, transparent);
+}
+
+/* ------------------------------------------------------------------------ */
+/* Dicas = balão amarelo                                                     */
+/* ------------------------------------------------------------------------ */
+
+tooltip.background,
+tooltip {
+  background-color: var(--xp-balloon-bg);
+  color: var(--xp-balloon-fg);
+  border-radius: 8px;
+  box-shadow: inset 0 0 0 1px var(--xp-balloon-border);
+}
+
+tooltip > * {
+  color: var(--xp-balloon-fg);
+}
+
+/* ------------------------------------------------------------------------ */
+/* Seleção de texto e rolagem                                               */
+/* ------------------------------------------------------------------------ */
+
+selection,
+text > selection,
+label > selection {
+  background-color: color-mix(in srgb, var(--xp-selection) 35%, transparent);
+}
+
+scrollbar > range > trough > slider {
+  background-color: color-mix(in srgb, var(--xp-selection) 45%, transparent);
+}
+
+scrollbar > range > trough > slider:hover {
+  background-color: color-mix(in srgb, var(--xp-selection) 70%, transparent);
+}
+
+/* Toasts / banners */
+toast {
+  background-color: var(--xp-osd-bg);
+  color: #ffffff;
+}
+
+banner > revealer > widget {
+  background-color: var(--xp-balloon-bg);
+  color: var(--xp-balloon-fg);
+  box-shadow: inset 0 -1px var(--xp-balloon-border);
+}

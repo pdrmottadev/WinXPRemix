@@ -1,0 +1,123 @@
+// WinXPRemix — paleta compartilhada
+// "Luna" reinterpretada: mesmas cores icônicas, superfícies mais limpas.
+//
+// Cada arquivo de entrada define $variant: 'light' | 'dark' antes de importar.
+
+// --- Cores fixas (iguais nas duas variantes) --------------------------------
+
+// Barra de título / headerbar: texto (o gradiente varia por variante, abaixo)
+$title-fg:         #ffffff;
+
+// Barra de tarefas (painel do Shell)
+$taskbar-top:      #3b80f0;
+$taskbar-bottom:   #1a4fc6;
+$taskbar-edge:     #0e3a9a;
+
+// Área de notificação ("system tray")
+$tray-top:         #1d9bf0;
+$tray-bottom:      #0c74da;
+$tray-edge:        #0a4bb4;
+
+// Botão "Iniciar"
+$start-top:        #5cbf4a;
+$start-bottom:     #2e8b2e;
+$start-hover-top:  #72d45f;
+$start-hover-bot:  #379c35;
+$start-edge:       #1f6b1f;
+
+// Seleção, foco e destaques
+$selection:        #316ac5;
+$selection-fg:     #ffffff;
+$hot:              #f5a623;   // contorno laranja do hover clássico
+$hot-light:        #ffc85a;
+$check-green:      #21a121;
+
+// Botão fechar
+$close-top:        #f37b5a;
+$close-bottom:     #cf3d1f;
+$close-edge:       #8f1d0b;
+
+$close-hover-top:  #ff9a7c;
+$close-hover-bot:  #e2502f;
+$close-active-top: #b02f14;
+
+// Botões minimizar/maximizar
+$ctl-top:          #5d9bff;
+$ctl-bottom:       #2560dc;
+$ctl-hover-top:    #82b4ff;
+$ctl-hover-bot:    #3a74ee;
+$ctl-active-top:   #1d50c0;
+
+// Botão de ação sugerida (azul)
+$suggested-top:       #5b93ec;
+$suggested-edge:      #234f99;
+$suggested-hover-top: #75a7f5;
+$suggested-hover-bot: #3e78d4;
+
+// Barra de progresso em blocos verdes e "botão" dos sliders
+$progress-top:     #8ee07a;
+$progress-bottom:  #2ea12e;
+$progress-edge:    #1f7f1f;
+$knob-top:         #ffffff;
+$knob-bottom:      #e9e7de;
+$knob-border:      #1c5180;
+
+// Semânticas
+$success:          #2e9e3e;
+$warning:          #e5a50a;
+$error:            #d93a2b;
+
+// --- Cores por variante ------------------------------------------------------
+
+@function pick($light, $dark) {
+  @if $variant == 'dark' { @return $dark; }
+  @return $light;
+}
+
+// Barra de título / headerbar (azul Luna; um pouco mais fechado no escuro)
+$title-top:        pick(#4a95f7, #3f86ee);
+$title-mid:        pick(#1a5ae0, #164fc8);
+$title-bottom:     pick(#0b4bd0, #0b40b2);
+$title-edge:       pick(#0a3a9e, #082d7a);
+
+$bg:               pick(#f0eee4, #1f2229);   // fundo da janela (bege Luna / grafite)
+$fg:               pick(#1b1d22, #e8eaf0);
+$fg-dim:           pick(#5b5e66, #a3a8b5);
+$view-bg:          pick(#ffffff, #16181d);
+$view-fg:          pick(#1b1d22, #e8eaf0);
+$card-bg:          pick(#ffffff, #262a33);
+$card-border:      pick(#d4cfbb, #363b47);
+$popover-bg:       pick(#ffffff, #2a2e38);
+$popover-fg:       pick(#1b1d22, #e8eaf0);
+$popover-border:   pick(#2a5fcf, #1f4fb8);
+$sidebar-bg:       pick(#e2eaf9, #1a2741);   // painel lateral azul do Explorer
+$sidebar-fg:       pick(#1e3a7a, #d6e2ff);
+$sidebar-border:   pick(#b9c9ea, #2a3a5c);
+$sidebar-backdrop: pick(#e9eef8, #1d2638);
+$secondary-sidebar-bg:       pick(#edf1fa, #1d2639);
+$secondary-sidebar-backdrop: pick(#f1f4fa, #1f2533);
+$toolbar-bg:       pick(#ebe8dc, #262a33);   // fundo das barras sob a headerbar
+$hover-bg:         pick(#e3ecfb, #2c3950);
+$border:           pick(#c3bfae, #3a3f4b);
+$entry-border:     pick(#7f9db9, #4a5a78);
+$check-border:     pick(#1c5180, #5a7fb8);
+$accent-color:     pick(#2a5fb8, #7aa7ff);   // texto/links na cor de destaque
+
+// Semânticas em texto (as de fundo, fixas, ficam no topo)
+$success-text:     pick(#1f7f2c, #5fd06b);
+$warning-text:     pick(#a86b00, #f2c14e);
+$error-text:       pick(#c02a1c, #ff7b6b);
+
+$btn-top:          pick(#ffffff, #3b404c);
+$btn-bottom:       pick(#e9e7de, #2c3039);
+$btn-border:       pick(rgba(0, 60, 116, 0.55), rgba(255, 255, 255, 0.14));
+$btn-fg:           pick(#1b1d22, #eef0f5);
+
+$title-backdrop-top:    pick(#a5bdf0, #3d4d72);
+$title-backdrop-bottom: pick(#7d9ade, #2b3756);
+
+$balloon-bg:       pick(#ffffe1, #34321f);
+$balloon-fg:       pick(#1b1d22, #f3edc8);
+$balloon-border:   pick(#c9b97a, #6b6440);
+
+$osd-bg:           rgba(14, 44, 120, 0.92);

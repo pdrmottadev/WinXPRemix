@@ -1,0 +1,872 @@
+// WinXPRemix — GNOME Shell 50+
+//
+// O arquivo de entrada importa a variante clara ou escura do tema padrão do
+// Shell (gnome-shell-light/dark.css) e este arquivo sobrescreve por cima.
+// Importar a base explicitamente torna o resultado independente de qual
+// variante o Shell escolheu sozinho (no modo "padrão" ele usa a escura).
+//
+// Limitações do St: gradientes só de duas cores e uma única box-shadow.
+
+@import '../palette';
+
+@mixin vgradient($top, $bottom) {
+  background-gradient-direction: vertical;
+  background-gradient-start: $top;
+  background-gradient-end: $bottom;
+}
+
+@mixin xp-button {
+  @include vgradient($btn-top, $btn-bottom);
+  color: $btn-fg;
+  border: 1px solid $btn-border;
+  border-radius: 7px;
+  box-shadow: none;
+}
+
+@mixin xp-button-hover {
+  border-color: $hot;
+  box-shadow: inset 0 0 0 1px $hot-light;
+}
+
+@mixin xp-button-checked {
+  @include vgradient(lighten($selection, 12%), $selection);
+  color: $selection-fg;
+  border-color: darken($selection, 12%);
+}
+
+// ---------------------------------------------------------------------------
+// Barra superior = barra de tarefas Luna
+// ---------------------------------------------------------------------------
+
+#panel,
+#panel:overview {
+  @include vgradient($taskbar-top, $taskbar-bottom);
+  background-color: $taskbar-bottom;
+  height: 2.4em;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.35);
+}
+
+#panel.unlock-screen,
+#panel.login-screen {
+  background-gradient-direction: none;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+#panel .panel-button,
+#panel .panel-button.clock-display {
+  color: #ffffff;
+  border-radius: 6px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.35);
+}
+
+#panel .panel-button:focus,
+#panel .panel-button:hover {
+  box-shadow: inset 0 0 0 100px rgba(255, 255, 255, 0.16);
+}
+
+#panel .panel-button:active,
+#panel .panel-button:checked {
+  box-shadow: inset 0 0 0 100px rgba(0, 20, 80, 0.30);
+}
+
+#panel .panel-button:active:hover,
+#panel .panel-button:checked:hover {
+  box-shadow: inset 0 0 0 100px rgba(0, 20, 80, 0.38);
+}
+
+#panel .panel-button.clock-display .clock {
+  border-radius: 6px;
+}
+
+#panel .panel-button .system-status-icon {
+  icon-shadow: 0 1px 1px rgba(0, 0, 0, 0.35);
+}
+
+// Botão "Iniciar" (Atividades): pílula verde colada à borda esquerda
+#panel .panel-button#panelActivities {
+  @include vgradient($start-top, $start-bottom);
+  border: none;
+  border-right: 1px solid $start-edge;
+  border-radius: 0 16px 16px 0;
+  margin: 0;
+  -natural-hpadding: 22px;
+  -minimum-hpadding: 14px;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.45);
+}
+
+#panel .panel-button#panelActivities:hover,
+#panel .panel-button#panelActivities:focus {
+  @include vgradient($start-hover-top, $start-hover-bot);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.55);
+}
+
+#panel .panel-button#panelActivities:active,
+#panel .panel-button#panelActivities:checked,
+#panel:overview .panel-button#panelActivities {
+  @include vgradient($start-bottom, darken($start-bottom, 4%));
+  box-shadow: inset 0 2px 3px 0 rgba(0, 0, 0, 0.35);
+}
+
+#panel .panel-button#panelActivities .workspace-dot {
+  background-color: #ffffff;
+}
+
+// Lado direito = área de notificação
+#panelRight {
+  @include vgradient($tray-top, $tray-bottom);
+  border-left: 1px solid $tray-edge;
+  border-radius: 10px 0 0 10px;
+  padding-left: 4px;
+  box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.30);
+}
+
+#panel.unlock-screen #panelRight,
+#panel.login-screen #panelRight {
+  background-gradient-direction: none;
+  background-color: transparent;
+  border-left-width: 0;
+  box-shadow: none;
+}
+
+#panel.unlock-screen .panel-button#panelActivities,
+#panel.login-screen .panel-button#panelActivities {
+  background-gradient-direction: none;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+// ---------------------------------------------------------------------------
+// Menus e popovers — estilo menu do XP: borda azul, seleção azul
+// ---------------------------------------------------------------------------
+
+.popup-menu {
+  color: $popover-fg;
+}
+
+.popup-menu-content,
+.candidate-popup-content {
+  background-color: $popover-bg;
+  border: 1px solid $popover-border;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.25);
+}
+
+.popup-menu-item {
+  border-radius: 6px;
+  color: $popover-fg;
+}
+
+.popup-menu-item:hover,
+.popup-menu-item:selected,
+.popup-menu-item:focus {
+  color: $selection-fg;
+  background-color: $selection;
+}
+
+.popup-menu-item:active,
+.popup-menu-item:active:hover {
+  color: $selection-fg;
+  background-color: darken($selection, 8%);
+}
+
+.popup-menu-item:checked {
+  color: $popover-fg;
+  background-color: $hover-bg;
+}
+
+.popup-menu-item:insensitive {
+  color: transparentize($popover-fg, 0.55);
+  background-color: transparent;
+}
+
+.popup-sub-menu {
+  background-color: pick(#f1f4fb, #222733);
+  border: 1px solid $sidebar-border;
+}
+
+.popup-sub-menu .popup-menu-item:hover,
+.popup-sub-menu .popup-menu-item:selected,
+.popup-sub-menu .popup-menu-item:focus {
+  color: $selection-fg;
+  background-color: $selection;
+}
+
+.popup-sub-menu .popup-menu-item:active {
+  color: $selection-fg;
+  background-color: darken($selection, 8%);
+}
+
+.popup-separator-menu-item .popup-separator-menu-item-separator,
+.popup-sub-menu .popup-separator-menu-item .popup-separator-menu-item-separator {
+  background-color: pick(#c8d3ea, #3a4560);
+}
+
+// ---------------------------------------------------------------------------
+// Botões genéricos — botão XP arredondado, hover laranja
+// ---------------------------------------------------------------------------
+
+.button,
+.modal-dialog .modal-dialog-button-box .modal-dialog-button,
+.notification-button,
+.message .message-header .message-expand-button,
+.message .message-header .message-close-button {
+  @include xp-button;
+}
+
+.button:hover,
+.button:focus,
+.modal-dialog .modal-dialog-button-box .modal-dialog-button:hover,
+.modal-dialog .modal-dialog-button-box .modal-dialog-button:focus,
+.notification-button:hover,
+.notification-button:focus {
+  @include xp-button-hover;
+  color: $btn-fg;
+}
+
+.button:active,
+.modal-dialog .modal-dialog-button-box .modal-dialog-button:active,
+.notification-button:active {
+  @include vgradient($btn-bottom, $btn-top);
+  color: $btn-fg;
+}
+
+.button.default,
+.modal-dialog .modal-dialog-button-box .modal-dialog-button.default {
+  @include xp-button-checked;
+}
+
+.button.default:hover,
+.button.default:focus,
+.modal-dialog .modal-dialog-button-box .modal-dialog-button.default:hover,
+.modal-dialog .modal-dialog-button-box .modal-dialog-button.default:focus {
+  @include vgradient(lighten($selection, 18%), lighten($selection, 4%));
+  color: $selection-fg;
+  border-color: $hot;
+}
+
+// ---------------------------------------------------------------------------
+// Configurações rápidas — lembra o menu Iniciar
+// ---------------------------------------------------------------------------
+
+.quick-settings {
+  @include vgradient($popover-bg, pick(#e9eff9, #222838));
+  border: 2px solid $popover-border;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: none; // gradiente + sombra externa vira um retângulo no St
+}
+
+.quick-settings .quick-toggle,
+.quick-settings .quick-toggle-has-menu .quick-toggle,
+.quick-settings .quick-toggle-has-menu .quick-toggle-menu-button {
+  @include xp-button;
+}
+
+.quick-settings .quick-toggle {
+  border-radius: 10px;
+}
+
+.quick-settings .quick-toggle-has-menu .quick-toggle:ltr {
+  border-radius: 10px 0 0 10px;
+  border-right-width: 0;
+}
+
+.quick-settings .quick-toggle-has-menu .quick-toggle:rtl {
+  border-radius: 0 10px 10px 0;
+  border-left-width: 0;
+}
+
+.quick-settings .quick-toggle-has-menu .quick-toggle:ltr:last-child,
+.quick-settings .quick-toggle-has-menu .quick-toggle:rtl:last-child {
+  border-radius: 10px;
+  border-width: 1px;
+}
+
+.quick-settings .quick-toggle-has-menu .quick-toggle-menu-button:ltr {
+  border-radius: 0 10px 10px 0;
+  border-left-width: 0;
+}
+
+.quick-settings .quick-toggle-has-menu .quick-toggle-menu-button:rtl {
+  border-radius: 10px 0 0 10px;
+  border-right-width: 0;
+}
+
+.quick-settings .quick-toggle:hover,
+.quick-settings .quick-toggle:focus,
+.quick-settings .quick-toggle-has-menu .quick-toggle-menu-button:hover,
+.quick-settings .quick-toggle-has-menu .quick-toggle-menu-button:focus {
+  @include xp-button-hover;
+  color: $btn-fg;
+}
+
+.quick-settings .quick-toggle:checked,
+.quick-settings .quick-toggle-has-menu .quick-toggle-menu-button:checked {
+  @include xp-button-checked;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.30);
+}
+
+.quick-settings .quick-toggle:checked:hover,
+.quick-settings .quick-toggle:checked:focus,
+.quick-settings .quick-toggle-has-menu .quick-toggle-menu-button:checked:hover,
+.quick-settings .quick-toggle-has-menu .quick-toggle-menu-button:checked:focus {
+  @include vgradient(lighten($selection, 18%), lighten($selection, 4%));
+  color: $selection-fg;
+  border-color: $hot;
+  box-shadow: inset 0 0 0 1px $hot-light;
+}
+
+.quick-toggle-has-menu .quick-toggle-separator {
+  background-color: $btn-border;
+}
+
+.quick-toggle-has-menu:checked .quick-toggle-separator {
+  background-color: rgba(255, 255, 255, 0.35);
+}
+
+.quick-settings .icon-button,
+.quick-settings .button.icon-button {
+  @include xp-button;
+  border-radius: 999px;
+}
+
+.quick-settings .icon-button:hover,
+.quick-settings .icon-button:focus {
+  @include xp-button-hover;
+}
+
+.quick-settings .icon-button.flat,
+.quick-slider .icon-button.flat {
+  background-gradient-direction: none;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.quick-settings .icon-button.flat:hover,
+.quick-slider .icon-button.flat:hover {
+  background-color: $hover-bg;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.quick-toggle-menu {
+  background-color: $card-bg;
+  border: 1px solid $sidebar-border;
+  border-radius: 12px;
+  color: $fg;
+}
+
+.quick-toggle-menu .header .icon {
+  background-color: $hover-bg;
+  color: $sidebar-fg;
+}
+
+.quick-toggle-menu .header .icon.active {
+  @include vgradient(lighten($selection, 12%), $selection);
+  color: $selection-fg;
+}
+
+// ---------------------------------------------------------------------------
+// Controles
+// ---------------------------------------------------------------------------
+
+.toggle-switch {
+  background: pick(rgba(0, 0, 0, 0.16), rgba(255, 255, 255, 0.16));
+  border: 1px solid pick(rgba(0, 40, 90, 0.25), rgba(255, 255, 255, 0.10));
+}
+
+.toggle-switch:checked {
+  background: $check-green;
+  border-color: darken($check-green, 10%);
+  color: #ffffff;
+}
+
+.toggle-switch:checked:hover {
+  background: lighten($check-green, 5%);
+}
+
+.toggle-switch .handle,
+.toggle-switch:checked .handle {
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+}
+
+.check-box StIcon {
+  border-radius: 4px;
+  border: 1px solid $entry-border;
+  background-color: $view-bg;
+}
+
+.check-box:checked StIcon {
+  background-color: $view-bg;
+  color: $check-green;
+  border-color: $entry-border;
+}
+
+.check-box:checked:hover StIcon {
+  background-color: $view-bg;
+  color: lighten($check-green, 6%);
+  border-color: $hot;
+}
+
+.slider {
+  color: $fg;
+  -barlevel-height: 6px;
+  -barlevel-background-color: pick(rgba(0, 40, 90, 0.15), rgba(255, 255, 255, 0.14));
+  -barlevel-active-background-color: $selection;
+  -barlevel-overdrive-color: $error;
+  -slider-handle-radius: 0.6em;
+}
+
+.slider:hover {
+  color: $selection;
+}
+
+StScrollBar > .vhandle,
+StScrollBar > .hhandle {
+  background-color: pick(#a9bde4, #4a5a7a);
+}
+
+StScrollBar > .vhandle:hover,
+StScrollBar > .hhandle:hover {
+  background-color: pick(#6f93d8, #6a7da3);
+}
+
+// ---------------------------------------------------------------------------
+// Entradas de texto e busca
+// ---------------------------------------------------------------------------
+
+StEntry,
+.search-entry {
+  background-color: $view-bg;
+  color: $view-fg;
+  border: 1px solid $entry-border;
+  border-radius: 8px;
+  selection-background-color: $selection;
+  selected-color: $selection-fg;
+  box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, 0.10);
+}
+
+StEntry:hover,
+.search-entry:hover {
+  background-color: $view-bg;
+  border-color: lighten($selection, 15%);
+}
+
+StEntry:focus,
+.search-entry:focus {
+  background-color: $view-bg;
+  border-color: $selection;
+  box-shadow: inset 0 0 0 1px $selection;
+}
+
+StEntry StLabel.hint-text {
+  color: transparentize($view-fg, 0.45);
+}
+
+.search-entry {
+  border-radius: 10px;
+  border-width: 2px;
+  border-color: $popover-border;
+}
+
+.search-entry .search-entry-icon {
+  color: $selection;
+}
+
+// ---------------------------------------------------------------------------
+// Calendário / menu de data
+// ---------------------------------------------------------------------------
+
+.datemenu-today-button .date-label,
+.calendar .calendar-month-label {
+  color: pick($selection, #7aa7ff);
+}
+
+.calendar .calendar-day:hover,
+.calendar .calendar-day:focus {
+  background-color: $hover-bg;
+}
+
+.calendar .calendar-day.calendar-today,
+.calendar .calendar-day.calendar-today:selected {
+  @include vgradient(lighten($selection, 12%), $selection);
+  color: $selection-fg;
+  font-weight: bold;
+}
+
+.calendar .calendar-day:selected {
+  background-color: $hover-bg;
+  color: $fg;
+  box-shadow: inset 0 0 0 2px $selection;
+}
+
+.events-button,
+.world-clocks-button,
+.weather-button {
+  background-color: $card-bg;
+  border: 1px solid $card-border;
+  border-radius: 10px;
+  color: $fg;
+}
+
+.events-button:hover,
+.world-clocks-button:hover,
+.weather-button:hover {
+  background-color: $hover-bg;
+  border-color: $hot;
+}
+
+// ---------------------------------------------------------------------------
+// Notificações = balões amarelos do XP
+// ---------------------------------------------------------------------------
+
+.message {
+  background-color: $balloon-bg;
+  color: $balloon-fg;
+  border: 1px solid $balloon-border;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.18);
+}
+
+.message:second-in-stack {
+  background-color: pick(darken($balloon-bg, 4%), darken($balloon-bg, 3%));
+}
+
+.message:lower-in-stack {
+  background-color: pick(darken($balloon-bg, 8%), darken($balloon-bg, 6%));
+}
+
+.message:hover,
+.message:focus {
+  background-color: pick(darken($balloon-bg, 3%), lighten($balloon-bg, 4%));
+  border-color: $hot;
+}
+
+.message .message-header .message-source-title,
+.message .message-title {
+  color: $balloon-fg;
+  font-weight: bold;
+}
+
+.message .message-header .message-close-button,
+.message .message-header .message-expand-button {
+  border-radius: 999px;
+  padding: 4px;
+}
+
+.message .message-header .message-close-button:hover {
+  @include vgradient($close-top, $close-bottom);
+  border-color: $close-edge;
+  color: #ffffff;
+}
+
+.message-list-controls .button {
+  border-radius: 8px;
+}
+
+// ---------------------------------------------------------------------------
+// Diálogos modais — janela XP: bege com faixa azul no topo
+// ---------------------------------------------------------------------------
+
+.modal-dialog {
+  background-color: $bg;
+  color: $fg;
+  border: 2px solid $title-edge;
+  border-top: 8px solid $title-mid;
+  border-radius: 14px;
+  box-shadow: none; // com borda não-uniforme o St desenha a sombra quadrada
+}
+
+.modal-dialog .modal-dialog-button-box {
+  background-color: pick(darken($bg, 3%), lighten($bg, 3%));
+  border-top: 1px solid $border;
+}
+
+// ---------------------------------------------------------------------------
+// OSD (volume, brilho, troca de workspace)
+// ---------------------------------------------------------------------------
+
+.osd-window {
+  background-color: $osd-bg;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 18px;
+  box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.35);
+}
+
+.osd-window .level {
+  -barlevel-background-color: rgba(255, 255, 255, 0.20);
+  -barlevel-active-background-color: #ffffff;
+}
+
+.ws-switcher-indicator {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.ws-switcher-indicator:active {
+  background-color: #ffffff;
+}
+
+// ---------------------------------------------------------------------------
+// Alt+Tab
+// ---------------------------------------------------------------------------
+
+.switcher-list {
+  @include vgradient(lighten($title-mid, 6%), $title-bottom);
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.55);
+  border-radius: 18px;
+  box-shadow: none;
+}
+
+.switcher-list .item-box {
+  border-radius: 12px;
+  border: 2px solid transparent;
+}
+
+.switcher-list .item-box:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.switcher-list .item-box:selected {
+  background-color: rgba(255, 255, 255, 0.22);
+  border-color: $hot-light;
+}
+
+.switcher-arrow {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.switcher-arrow:highlighted {
+  color: #ffffff;
+}
+
+// ---------------------------------------------------------------------------
+// Visão geral: dash como barra de tarefas flutuante
+// ---------------------------------------------------------------------------
+
+#dash .dash-background {
+  @include vgradient($taskbar-top, $taskbar-bottom);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 20px;
+  box-shadow: none;
+}
+
+#dash .dash-item-container .show-apps .overview-icon,
+#dash .dash-item-container .overview-tile .overview-icon,
+#dash .dash-item-container .grid-search-result .overview-icon {
+  background-color: transparent;
+  color: #ffffff;
+  border-radius: 12px;
+}
+
+#dash .dash-item-container .show-apps:hover .overview-icon,
+#dash .dash-item-container .overview-tile:hover .overview-icon,
+#dash .dash-item-container .grid-search-result:hover .overview-icon {
+  background-color: rgba(255, 255, 255, 0.20);
+  color: #ffffff;
+}
+
+#dash .dash-item-container .show-apps:checked .overview-icon,
+#dash .dash-item-container .overview-tile:checked .overview-icon {
+  background-color: rgba(0, 20, 80, 0.35);
+}
+
+#dash .dash-separator {
+  background-color: rgba(255, 255, 255, 0.35);
+}
+
+#dash .app-grid-running-dot,
+.app-grid-running-dot {
+  background-color: $hot-light;
+}
+
+.dash-label,
+.window-caption {
+  background-color: $balloon-bg;
+  color: $balloon-fg;
+  border: 1px solid $balloon-border;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+// Grade de apps
+.overview-tile:hover,
+.overview-tile:focus,
+.grid-search-result:hover,
+.grid-search-result:focus,
+.app-folder:hover,
+.app-folder:focus {
+  background-color: rgba(255, 255, 255, 0.16);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+}
+
+.overview-tile:selected,
+.grid-search-result:selected,
+.overview-tile:active {
+  background-color: rgba(49, 106, 197, 0.55);
+  box-shadow: inset 0 0 0 1px $hot-light;
+}
+
+.app-folder {
+  background-color: rgba(255, 255, 255, 0.10);
+}
+
+.app-folder-dialog {
+  background-color: rgba(14, 44, 120, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.30);
+  border-radius: 28px;
+}
+
+.page-indicator .page-indicator-icon {
+  background-color: rgba(255, 255, 255, 0.85);
+}
+
+// Resultados de busca
+.search-section-content {
+  background-color: pick(rgba(255, 255, 255, 0.92), rgba(30, 34, 44, 0.92));
+  border: 1px solid $popover-border;
+  border-radius: 16px;
+  color: $fg;
+}
+
+.list-search-result:hover,
+.list-search-result:focus,
+.list-search-result:selected {
+  background-color: $selection;
+  color: $selection-fg;
+}
+
+.list-search-result:hover .list-search-result-description,
+.list-search-result:focus .list-search-result-description,
+.list-search-result:selected .list-search-result-description {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+// Miniaturas de workspaces
+.workspace-thumbnail-indicator {
+  border: 3px solid $hot-light;
+  border-radius: 10px;
+}
+
+// ---------------------------------------------------------------------------
+// Tela de bloqueio — painel "Bem-vindo" do XP
+// ---------------------------------------------------------------------------
+//
+// O papel de parede desfocado é filho do .unlock-dialog e cobre o fundo dele,
+// então não dá para tingir a tela inteira pelo CSS. O relógio e o campo de
+// senha ganham um painel azul Luna; as notificações viram balões amarelos.
+
+@mixin welcome-panel {
+  @include vgradient(transparentize($taskbar-top, 0.12), transparentize($title-bottom, 0.12));
+  border: 2px solid rgba(255, 255, 255, 0.55);
+  border-radius: 18px;
+  box-shadow: none; // gradiente + sombra externa vira um retângulo no St
+}
+
+.unlock-dialog-clock {
+  @include welcome-panel;
+  padding: 28px 48px;
+}
+
+.unlock-dialog-clock .unlock-dialog-clock-time,
+.unlock-dialog-clock .unlock-dialog-clock-date {
+  color: #ffffff;
+  text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.45);
+}
+
+.unlock-dialog-clock .unlock-dialog-clock-hint {
+  background-color: $balloon-bg;
+  color: $balloon-fg;
+  border: 1px solid $balloon-border;
+}
+
+.unlock-dialog .login-dialog-prompt-layout {
+  @include welcome-panel;
+  padding: 24px;
+}
+
+.unlock-dialog .user-widget .user-widget-label {
+  color: #ffffff;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.45);
+}
+
+// Avatar em quadrado arredondado com moldura branca, como na tela do XP
+.unlock-dialog .user-widget .user-icon {
+  border-radius: 12px;
+  border: 3px solid #ffffff;
+  background-color: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+}
+
+.unlock-dialog .login-dialog-prompt-entry,
+.unlock-dialog .login-dialog-prompt-entry:hover {
+  background-color: $view-bg;
+  color: $view-fg;
+  border: 1px solid $entry-border;
+  border-radius: 8px;
+}
+
+.unlock-dialog .login-dialog-prompt-entry:hover {
+  border-color: lighten($selection, 15%);
+}
+
+// A base usa !important no foco; só assim dá para trocar
+.unlock-dialog .login-dialog-prompt-entry:focus {
+  border-color: $selection;
+  box-shadow: inset 0 0 0 1px $selection !important;
+}
+
+.unlock-dialog .login-dialog-prompt-entry StLabel.hint-text {
+  color: transparentize($view-fg, 0.45);
+}
+
+.unlock-dialog .button,
+.unlock-dialog .login-dialog-button.cancel-button,
+.unlock-dialog .login-dialog-button.switch-user-button {
+  @include xp-button;
+}
+
+.unlock-dialog .login-dialog-button.cancel-button,
+.unlock-dialog .login-dialog-button.switch-user-button {
+  border-radius: 999px;
+}
+
+.unlock-dialog .button:hover,
+.unlock-dialog .button:focus,
+.unlock-dialog .login-dialog-button.cancel-button:hover,
+.unlock-dialog .login-dialog-button.cancel-button:focus,
+.unlock-dialog .login-dialog-button.switch-user-button:hover,
+.unlock-dialog .login-dialog-button.switch-user-button:focus {
+  @include xp-button-hover;
+  color: $btn-fg;
+}
+
+.unlock-dialog-notifications-container .message,
+.unlock-dialog-notifications-container .unlock-dialog-notification-source,
+.unlock-dialog-notifications-container .message:active,
+.unlock-dialog-notifications-container .unlock-dialog-notification-source:active {
+  background-color: $balloon-bg;
+  color: $balloon-fg;
+  border: 1px solid $balloon-border;
+  border-radius: 12px;
+}
+
+.unlock-dialog-notifications-container .message.critical,
+.unlock-dialog-notifications-container .unlock-dialog-notification-source.critical {
+  background-color: pick(darken($balloon-bg, 6%), lighten($balloon-bg, 6%));
+  border-color: $hot;
+}
+
+.unlock-dialog-notifications-container .message .message-header,
+.unlock-dialog-notifications-container .unlock-dialog-notification-source .message-header {
+  color: $balloon-fg;
+}
+
+.unlock-dialog-notification-count-text {
+  color: $balloon-fg;
+  background-color: transparentize($balloon-border, 0.6);
+}

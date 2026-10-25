@@ -1,0 +1,419 @@
+// WinXPRemix — GTK 3
+//
+// Usa o Adwaita embutido no GTK3 como base (importado pelos arquivos de
+// entrada) e aplica o visual Luna por cima.
+
+@import '../palette';
+
+@define-color theme_bg_color #{$bg};
+@define-color theme_fg_color #{$fg};
+@define-color theme_base_color #{$view-bg};
+@define-color theme_text_color #{$view-fg};
+@define-color theme_selected_bg_color #{$selection};
+@define-color theme_selected_fg_color #{$selection-fg};
+@define-color accent_bg_color #{$selection};
+@define-color accent_fg_color #{$selection-fg};
+
+@mixin xp-button {
+  background-image: linear-gradient(to bottom, $btn-top, $btn-bottom);
+  color: $btn-fg;
+  border: 1px solid $btn-border;
+  border-radius: 6px;
+  box-shadow: none;
+  text-shadow: none;
+  -gtk-icon-shadow: none;
+}
+
+@mixin xp-hover {
+  border-color: $hot;
+  box-shadow: inset 0 0 0 1px $hot-light;
+}
+
+// ---------------------------------------------------------------------------
+// Janela e superfícies
+// ---------------------------------------------------------------------------
+
+window.background,
+.background {
+  background-color: $bg;
+  color: $fg;
+}
+
+.view,
+textview text,
+iconview,
+treeview.view {
+  background-color: $view-bg;
+  color: $view-fg;
+}
+
+.view:selected,
+treeview.view:selected,
+iconview:selected,
+row:selected,
+*:selected {
+  background-color: $selection;
+  color: $selection-fg;
+}
+
+selection,
+*:selected selection {
+  background-color: $selection;
+  color: $selection-fg;
+}
+
+// ---------------------------------------------------------------------------
+// Barra de título Luna
+// ---------------------------------------------------------------------------
+
+headerbar,
+.titlebar:not(headerbar),
+.titlebar headerbar {
+  background-color: $title-bottom;
+  background-image: linear-gradient(to bottom, $title-top, $title-mid 45%, $title-bottom);
+  color: $title-fg;
+  border-color: $title-edge;
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.35);
+}
+
+headerbar:backdrop,
+.titlebar:not(headerbar):backdrop {
+  background-image: linear-gradient(to bottom, $title-backdrop-top, $title-backdrop-bottom);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+headerbar .title {
+  font-weight: 800;
+  color: $title-fg;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+}
+
+headerbar .subtitle {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+headerbar button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.link):not(.osd) {
+  background-image: none;
+  background-color: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  color: $title-fg;
+  text-shadow: none;
+  -gtk-icon-shadow: 0 1px rgba(0, 0, 0, 0.3);
+}
+
+headerbar button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.link):not(.osd):hover {
+  background-color: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.30);
+}
+
+headerbar button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.link):not(.osd):active,
+headerbar button:not(.suggested-action):not(.destructive-action):not(.titlebutton):not(.link):not(.osd):checked {
+  background-color: rgba(0, 20, 80, 0.30);
+  border-color: rgba(0, 0, 0, 0.20);
+}
+
+headerbar entry {
+  background-color: $view-bg;
+  color: $view-fg;
+}
+
+headerbar button.titlebutton:not(.appmenu) {
+  min-width: 20px;
+  min-height: 20px;
+  padding: 1px;
+  margin: 0 1px;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  background-image: linear-gradient(to bottom, $ctl-top, $ctl-bottom);
+  color: #ffffff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+  -gtk-icon-shadow: 0 1px rgba(0, 0, 0, 0.35);
+}
+
+headerbar button.titlebutton:not(.appmenu):hover {
+  background-image: linear-gradient(to bottom, lighten($ctl-top, 8%), lighten($ctl-bottom, 8%));
+}
+
+headerbar button.titlebutton:not(.appmenu):active {
+  background-image: linear-gradient(to bottom, darken($ctl-bottom, 6%), $ctl-bottom);
+}
+
+headerbar button.titlebutton:not(.appmenu).close {
+  background-image: linear-gradient(to bottom, $close-top, $close-bottom);
+}
+
+headerbar button.titlebutton:not(.appmenu).close:hover {
+  background-image: linear-gradient(to bottom, lighten($close-top, 8%), lighten($close-bottom, 8%));
+}
+
+headerbar button.titlebutton:not(.appmenu):backdrop {
+  background-image: linear-gradient(to bottom, #9db6ea, #7895d8);
+  border-color: rgba(255, 255, 255, 0.7);
+  box-shadow: none;
+}
+
+headerbar button.titlebutton:not(.appmenu).close:backdrop {
+  background-image: linear-gradient(to bottom, #e8a593, #c97a68);
+}
+
+// ---------------------------------------------------------------------------
+// Botões
+// ---------------------------------------------------------------------------
+
+button:not(.flat):not(.titlebutton):not(.suggested-action):not(.destructive-action):not(.link),
+combobox button,
+spinbutton button {
+  @include xp-button;
+}
+
+button:not(.flat):not(.titlebutton):not(.suggested-action):not(.destructive-action):not(.link):hover,
+combobox button:hover,
+spinbutton button:hover {
+  @include xp-hover;
+}
+
+button:not(.flat):not(.titlebutton):not(.suggested-action):not(.destructive-action):not(.link):active,
+button:not(.flat):not(.titlebutton):not(.suggested-action):not(.destructive-action):not(.link):checked {
+  background-image: linear-gradient(to bottom, $btn-bottom, $btn-top);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+button:not(.flat):not(.titlebutton):disabled {
+  background-image: none;
+  background-color: $btn-bottom;
+  opacity: 0.6;
+}
+
+spinbutton button {
+  border-radius: 0;
+}
+
+button.suggested-action,
+button.default {
+  background-image: linear-gradient(to bottom, lighten($selection, 12%), $selection);
+  color: #ffffff;
+  border: 1px solid darken($selection, 12%);
+  border-radius: 6px;
+  text-shadow: none;
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.30);
+}
+
+button.suggested-action:hover,
+button.default:hover {
+  background-image: linear-gradient(to bottom, lighten($selection, 18%), lighten($selection, 4%));
+  border-color: $hot;
+}
+
+button.destructive-action {
+  background-image: linear-gradient(to bottom, $close-top, $close-bottom);
+  color: #ffffff;
+  border: 1px solid $close-edge;
+  border-radius: 6px;
+  text-shadow: none;
+}
+
+button.destructive-action:hover {
+  background-image: linear-gradient(to bottom, lighten($close-top, 8%), lighten($close-bottom, 8%));
+}
+
+// ---------------------------------------------------------------------------
+// Entradas
+// ---------------------------------------------------------------------------
+
+entry,
+spinbutton:not(.vertical) {
+  background-color: $view-bg;
+  color: $view-fg;
+  border: 1px solid $entry-border;
+  border-radius: 6px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+entry:focus,
+spinbutton:focus {
+  border-color: $selection;
+  box-shadow: inset 0 0 0 1px $selection;
+}
+
+spinbutton entry {
+  border: none;
+  box-shadow: none;
+}
+
+// ---------------------------------------------------------------------------
+// Check, rádio, switch
+// ---------------------------------------------------------------------------
+
+check,
+radio {
+  background-image: linear-gradient(to bottom right, darken($view-bg, 6%), $view-bg);
+  background-color: $view-bg;
+  border: 1px solid $check-border;
+  color: $check-green;
+  box-shadow: none;
+  -gtk-icon-shadow: none;
+}
+
+check {
+  border-radius: 3px;
+}
+
+check:hover,
+radio:hover {
+  border-color: $hot;
+  box-shadow: inset 0 0 0 1px $hot-light;
+}
+
+check:checked,
+check:indeterminate,
+radio:checked,
+check:backdrop,
+check:checked:backdrop,
+check:indeterminate:backdrop,
+radio:backdrop,
+radio:checked:backdrop {
+  background-image: linear-gradient(to bottom right, darken($view-bg, 6%), $view-bg);
+  color: $check-green;
+}
+
+switch:checked {
+  background-color: $check-green;
+  border-color: darken($check-green, 8%);
+}
+
+switch slider {
+  background-image: linear-gradient(to bottom, $knob-top, $knob-bottom);
+  border-color: rgba(0, 0, 0, 0.25);
+}
+
+// ---------------------------------------------------------------------------
+// Progresso e sliders
+// ---------------------------------------------------------------------------
+
+progressbar trough {
+  background-color: $view-bg;
+  border: 1px solid $entry-border;
+}
+
+progressbar progress {
+  background-image: linear-gradient(to right, transparent 9px, rgba(255, 255, 255, 0.55) 9px),
+                    linear-gradient(to bottom, $progress-top, $progress-bottom);
+  background-size: 11px 100%, 100% 100%;
+  background-repeat: repeat-x, no-repeat;
+  border-color: $progress-edge;
+}
+
+scale highlight {
+  background-color: $selection;
+  border-color: darken($selection, 8%);
+}
+
+scale slider {
+  background-image: linear-gradient(to bottom, $knob-top, $knob-bottom);
+  border: 1px solid $knob-border;
+}
+
+scale slider:hover {
+  border-color: $hot;
+}
+
+// ---------------------------------------------------------------------------
+// Abas
+// ---------------------------------------------------------------------------
+
+notebook > header.top > tabs > tab:checked    { box-shadow: inset 0 3px $hot; }
+notebook > header.bottom > tabs > tab:checked { box-shadow: inset 0 -3px $hot; }
+notebook > header.left > tabs > tab:checked   { box-shadow: inset 3px 0 $hot; }
+notebook > header.right > tabs > tab:checked  { box-shadow: inset -3px 0 $hot; }
+
+notebook > header.top > tabs > tab:hover:not(:checked) { box-shadow: inset 0 3px $hot-light; }
+
+// ---------------------------------------------------------------------------
+// Menus e popovers
+// ---------------------------------------------------------------------------
+
+menu,
+.menu,
+.context-menu {
+  background-color: $popover-bg;
+  border: 1px solid $popover-border;
+}
+
+menu menuitem:hover,
+.menu menuitem:hover,
+.context-menu menuitem:hover {
+  background-color: $selection;
+  color: $selection-fg;
+}
+
+menubar > menuitem:hover {
+  background-color: $selection;
+  color: $selection-fg;
+  box-shadow: none;
+}
+
+popover.background {
+  background-color: $popover-bg;
+  border: 1px solid $popover-border;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+popover modelbutton:hover,
+popover modelbutton.flat:hover {
+  background-color: $selection;
+  color: $selection-fg;
+}
+
+// ---------------------------------------------------------------------------
+// Barra lateral (painel azul do Explorer)
+// ---------------------------------------------------------------------------
+
+.sidebar,
+placessidebar,
+placessidebar list,
+stacksidebar list {
+  background-color: $sidebar-bg;
+  color: $sidebar-fg;
+  border-color: $sidebar-border;
+}
+
+placessidebar row:selected,
+stacksidebar row:selected,
+.sidebar row:selected {
+  background-color: $selection;
+  color: $selection-fg;
+}
+
+// ---------------------------------------------------------------------------
+// Dicas, barras de rolagem
+// ---------------------------------------------------------------------------
+
+tooltip,
+tooltip.background {
+  background-color: $balloon-bg;
+  color: $balloon-fg;
+  border: 1px solid $balloon-border;
+  border-radius: 8px;
+  text-shadow: none;
+}
+
+tooltip * {
+  color: $balloon-fg;
+}
+
+scrollbar slider {
+  background-color: rgba(49, 106, 197, 0.45);
+}
+
+scrollbar slider:hover {
+  background-color: rgba(49, 106, 197, 0.70);
+}
+
+infobar.info > revealer > box,
+infobar.warning > revealer > box {
+  background-color: $balloon-bg;
+  color: $balloon-fg;
+  border-bottom: 1px solid $balloon-border;
+}

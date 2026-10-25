@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3840" height="2160" viewBox="0 0 3840 2160">
+  <!-- WinXPRemix — "Colina" (noite). Arte original inspirada na paisagem clássica. -->
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#050d26"/>
+      <stop offset="0.5" stop-color="#0e2a66"/>
+      <stop offset="1" stop-color="#2d5aa8"/>
+    </linearGradient>
+    <radialGradient id="moon" cx="0.78" cy="0.2" r="0.35">
+      <stop offset="0" stop-color="#cfe2ff" stop-opacity="0.45"/>
+      <stop offset="0.3" stop-color="#9fc0ff" stop-opacity="0.15"/>
+      <stop offset="1" stop-color="#9fc0ff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="hillBack" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1f5a3a"/>
+      <stop offset="1" stop-color="#0d2a1c"/>
+    </linearGradient>
+    <linearGradient id="hill" x1="0" y1="0" x2="0.15" y2="1">
+      <stop offset="0" stop-color="#2f7a3c"/>
+      <stop offset="0.4" stop-color="#1b5329"/>
+      <stop offset="1" stop-color="#0a2112"/>
+    </linearGradient>
+    <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#bcd6ff" stop-opacity="0"/>
+      <stop offset="0.7" stop-color="#bcd6ff" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#bcd6ff" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="soft" x="-20%" y="-50%" width="140%" height="200%">
+      <feGaussianBlur stdDeviation="40"/>
+    </filter>
+    <filter id="glow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+  </defs>
+
+  <rect width="3840" height="2160" fill="url(#sky)"/>
+  <rect width="3840" height="2160" fill="url(#moon)"/>
+  <circle cx="2995" cy="430" r="70" fill="#eef4ff"/>
+  <circle cx="2995" cy="430" r="110" fill="#eef4ff" opacity="0.15" filter="url(#soft)"/>
+
+  <!-- estrelas -->
+  <g fill="#ffffff" filter="url(#glow)">
+    <circle cx="210" cy="180" r="4"/><circle cx="480" cy="340" r="3"/><circle cx="760" cy="140" r="5"/>
+    <circle cx="1020" cy="290" r="3"/><circle cx="1290" cy="120" r="4"/><circle cx="1500" cy="420" r="3"/>
+    <circle cx="1760" cy="210" r="5"/><circle cx="2040" cy="90" r="3"/><circle cx="2260" cy="330" r="4"/>
+    <circle cx="2520" cy="160" r="3"/><circle cx="3320" cy="230" r="4"/><circle cx="3560" cy="120" r="3"/>
+    <circle cx="3700" cy="420" r="5"/><circle cx="360" cy="620" r="3"/><circle cx="880" cy="560" r="4"/>
+    <circle cx="1380" cy="680" r="3"/><circle cx="1960" cy="560" r="3"/><circle cx="2700" cy="620" r="4"/>
+    <circle cx="3450" cy="700" r="3"/><circle cx="620" cy="820" r="2"/><circle cx="2380" cy="840" r="2"/>
+  </g>
+
+  <g fill="#9fc0ff" filter="url(#soft)" opacity="0.18">
+    <ellipse cx="900" cy="980" rx="900" ry="110"/>
+    <ellipse cx="3000" cy="1060" rx="800" ry="100"/>
+  </g>
+
+  <path d="M0 1500 C 700 1310, 1400 1290, 2100 1400 S 3300 1330, 3840 1250 L 3840 2160 L 0 2160 Z"
+        fill="url(#hillBack)"/>
+  <path d="M0 1640 C 900 1180, 2200 1180, 3840 1560 L 3840 2160 L 0 2160 Z" fill="url(#hill)"/>
+  <path d="M0 1640 C 900 1180, 2200 1180, 3840 1560 L 3840 1700 C 2300 1370, 1000 1360, 0 1800 Z"
+        fill="url(#sheen)" filter="url(#soft)"/>
+  <g fill="none" stroke="#9fc0ff" stroke-opacity="0.10" stroke-width="6">
+    <path d="M0 1820 C 1000 1440, 2300 1450, 3840 1760"/>
+    <path d="M0 1990 C 1100 1640, 2400 1650, 3840 1950"/>
+  </g>
+</svg>
